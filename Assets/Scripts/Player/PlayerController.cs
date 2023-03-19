@@ -14,13 +14,33 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private InputActionReference movement, attack, pointerPosition;
 
-    private Vector2 pointerInput, movementInput;
+    [HideInInspector]
+    public float lastHorizontalVector;
+    [HideInInspector]
+    public float lastVerticalVector;
+    [HideInInspector]
+    public Vector2 lastMovedVector;
 
+    private Vector2 pointerInput, movementInput;
     private void Update()
     {
         pointerInput = GetPointerInput();
         movementInput = movement.action.ReadValue<Vector2>().normalized;
+        if(movementInput.x != 0)
+        {
+            lastHorizontalVector = movementInput.x;
+            lastMovedVector = new Vector2(lastHorizontalVector, 0f);
+        }
+        if (movementInput.y != 0)
+        {
+            lastVerticalVector = movementInput.y;
+            lastMovedVector = new Vector2(0f, lastVerticalVector);  //Last moved Y
+        }
 
+        if (movementInput.x != 0 && movementInput.y != 0)
+        {
+            lastMovedVector = new Vector2(lastHorizontalVector, lastVerticalVector);    //While moving
+        }
         playerMover.MovementInput = movementInput;
         weaponController.PointerPosition = pointerInput;
         AnimateCharacter();
@@ -56,6 +76,7 @@ public class PlayerController : MonoBehaviour
         playerAnimator = GetComponentInChildren<PlayerAnimator>();
         weaponController = GetComponentInChildren<WeaponController>();
         playerMover = GetComponent<PlayerMover>();
+        lastMovedVector = new Vector2(1.0f, 0f);
     }
 
     private void AnimateCharacter()

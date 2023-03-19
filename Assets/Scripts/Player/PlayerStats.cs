@@ -49,6 +49,7 @@ public class PlayerStats : MonoBehaviour
 
     void Start()
     {
+        //Physics2D.IgnoreCollision(gameObject.GetComponent<BoxCollider2D>(), FindObjectOfType<EnemyStats>().GetComponent<BoxCollider2D>());
         experienceCap = levelRanges[0].experienceCapIncrease;
         exprienceBar.UpdateExprienceSlider(experience, experienceCap);
         exprienceBar.SetLevelText(level);

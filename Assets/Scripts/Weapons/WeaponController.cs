@@ -9,7 +9,7 @@ public class WeaponController : MonoBehaviour
     public WeaponScriptableObject weaponData;
     PlayerStats stats;
     public Vector2 PointerPosition { get; set; }
-
+    public GameObject arrowPrefab;
     public Animator animator;
     public float delay = 0.3f;
     private bool attackBlocked;
@@ -19,6 +19,7 @@ public class WeaponController : MonoBehaviour
     public Transform circleOrigin;
     public bool IsAttacking { get; private set; }
     SpriteRenderer weaponRenderer, characterRenderer;
+    PlayerController playerController;
     private void Start()
     {
         currentCoolDown = weaponData.CooldownDuration;
@@ -26,7 +27,7 @@ public class WeaponController : MonoBehaviour
         weaponRenderer = weaponData.Prefab.GetComponent<SpriteRenderer>();
         
         characterRenderer = gameObject.GetComponentInParent<PlayerStats>().playerData.Character.GetComponent<SpriteRenderer>();
-
+        playerController = FindObjectOfType<PlayerController>();
     }
     public void ResetIsAttacking()
     {
@@ -74,6 +75,7 @@ public class WeaponController : MonoBehaviour
         attackBlocked = true;
         StartCoroutine(DelayAttack());
         currentCoolDown = weaponData.CooldownDuration;
+        ProjectileAttack();
     }
     private IEnumerator DelayAttack() 
     {
@@ -82,6 +84,17 @@ public class WeaponController : MonoBehaviour
         ResetIsAttacking();
     }
 
+    private void ProjectileAttack()
+    {
+        Debug.Log("Pointer position: " +PointerPosition);
+        Debug.Log("Last move vector: " + playerController.lastMovedVector);
+        GameObject arrow = Instantiate(arrowPrefab, circleOrigin.position, Quaternion.identity);
+        //arrow.GetComponent<Arrow>().Initialize(PointerPosition, playerController.lastMovedVector);
+        arrow.GetComponent<Rigidbody2D>().velocity = (PointerPosition - (Vector2)transform.position).normalized * 10f;
+        arrow.transform.Rotate(0.0f, 0.0f,
+            Mathf.Atan2(PointerPosition.y, PointerPosition.x) * Mathf.Rad2Deg + 90);
+        Destroy(arrow, 5.0f);
+    }
     public void DetectColliders()
     {
         foreach (Collider2D collider in Physics2D.OverlapCircleAll(circleOrigin.position, radius))

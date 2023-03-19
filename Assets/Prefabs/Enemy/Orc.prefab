@@ -200,7 +200,9 @@ MonoBehaviour:
     itemPrefab: {fileID: 310128845103006029, guid: 87d46c56a81e5d04dba72ee08b6b4e63,
       type: 3}
     dropRate: 90
+    experienceGrant: 0
   - name: Silver Star
     itemPrefab: {fileID: 7259828757483846793, guid: 4a9b838b569006649a69a7fb8bf24bc9,
       type: 3}
     dropRate: 10
+    experienceGrant: 0

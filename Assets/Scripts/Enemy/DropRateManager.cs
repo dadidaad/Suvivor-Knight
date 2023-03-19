@@ -12,7 +12,10 @@ public class DropRateManager : MonoBehaviour
         public float dropRate;
         public int experienceGrant;
     }
-
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
     public List<Drops> drops;
 
     void OnDestroy()
