@@ -8,13 +8,14 @@ public class EnemyMover : MonoBehaviour
     public EnemyScriptableObject enemyData;
     Transform player;
     float currentMoveSpeed;
-    [SerializeField]
-    private Rigidbody2D rb2d;
+    Rigidbody2D rb2d;
+    Vector3 lastPosition;
     // Start is called before the first frame update
     void Start()
     {
         player = FindObjectOfType<PlayerMover>().transform;
         rb2d = GetComponent<Rigidbody2D>();
+        lastPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -30,5 +31,13 @@ public class EnemyMover : MonoBehaviour
             );
             rb2d.velocity = new Vector2(0f, 0f) * currentMoveSpeed;
         }
+        else
+        {
+            lastPosition = transform.position;
+        }
+    }
+    public Vector3 GetLastPosition()
+    {
+        return lastPosition;
     }
 }

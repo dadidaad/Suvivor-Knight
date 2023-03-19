@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 8137182223778076141}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 39781a6f244c3d44b8526e249973de69, type: 2}
+  rb2d: {fileID: 0}
 --- !u!114 &4591771408551479104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,7 +201,9 @@ MonoBehaviour:
     itemPrefab: {fileID: 7259828757483846793, guid: 4a9b838b569006649a69a7fb8bf24bc9,
       type: 3}
     dropRate: 60
+    experienceGrant: 0
   - name: Gold Star
     itemPrefab: {fileID: 6355284914724556924, guid: f6b656937bf9ece4a81f2984f702971a,
       type: 3}
     dropRate: 30
+    experienceGrant: 0

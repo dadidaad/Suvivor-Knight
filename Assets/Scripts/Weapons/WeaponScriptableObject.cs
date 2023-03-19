@@ -25,4 +25,17 @@ public class WeaponScriptableObject : ScriptableObject
     [SerializeField]
     int pierce;
     public int Pierce { get => pierce; private set => pierce = value; }
+
+    [SerializeField]
+    TypeWeapon type;
+
+    public TypeWeapon Type { get => type; private set => type = value; }
+
+
+
+    public enum TypeWeapon
+    {
+        Melee,
+        Projectile
+    }
 }

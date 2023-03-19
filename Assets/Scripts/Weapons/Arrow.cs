@@ -5,12 +5,9 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    public float speed = 10;
-    public int damage = 5;
-    public float maxDistance = 10;
+    float speed;
+    float damage;
 
-    private Vector2 startPosition;
-    private float conquaredDistance = 0;
     private Rigidbody2D rigidbody2D;
 
     // Start is called before the first frame update
@@ -35,10 +32,31 @@ public class Arrow : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void Initialize(Vector2 pointerPosition, Vector2 circlePosition)
+    public void Initialize(Vector2 shootPosition)
     {
-        startPosition = circlePosition;
-        rigidbody2D.velocity = (pointerPosition - circlePosition).normalized * speed;
+        Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
+        rigidbody2D.AddForce(shootPosition * speed, ForceMode2D.Impulse);
+        transform.eulerAngles = new Vector3(0, 0, UtilsClass.GetAngleFromVector(shootPosition));
+        Destroy(gameObject, 5f);
+    }
+
+    public void Setup(float speed, float damage)
+    {
+        this.speed = speed;
+        this.damage = damage;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.CompareTag("Enemy"))
+        {
+            EnemyStats enemyStats = collider.GetComponent<EnemyStats>();
+            if(enemyStats != null)
+            {
+                enemyStats.TakeDamage(damage);
+                Destroy(gameObject);
+            }
+        }
     }
 
 }

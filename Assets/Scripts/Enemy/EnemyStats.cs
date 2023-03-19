@@ -16,6 +16,8 @@ public class EnemyStats : MonoBehaviour
     public float timeToColor = 0.3f;
     bool isTarget = false;
     Color defaultColor;
+    EnemyMover enemyMover;
+    BoxCollider2D boxCollider;  
     void Awake()
     {
         currentMoveSpeed = enemyData.MoveSpeed;
@@ -24,6 +26,8 @@ public class EnemyStats : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         defaultColor = spriteRenderer.color;
+        enemyMover = GetComponent<EnemyMover>();
+        boxCollider =  GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -51,6 +55,7 @@ public class EnemyStats : MonoBehaviour
         
         animator.SetBool("Dead", true);
         isDead = true;
+        Destroy(boxCollider);
         Destroy(gameObject, 1);
     }
 

@@ -269,9 +269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29787408cf5b0834a93a5e4ad4fd4111, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponData: {fileID: 11400000, guid: 0d767910e4d028f469f5e51c70b8fea9, type: 2}
-  arrowPrefab: {fileID: 5500144235481921078, guid: 4b7f26ad74dffe94fb77167886e021ab,
-    type: 3}
+  weaponData: {fileID: 11400000, guid: e45a83f1becf0b946b56ac11dbb00b59, type: 2}
   animator: {fileID: 1046954553}
   delay: 0.3
   radius: 0.5
@@ -2830,7 +2828,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -319.99997, y: -40}
+  m_AnchoredPosition: {x: -320, y: -40}
   m_SizeDelta: {x: -720, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1572017425
@@ -3097,17 +3095,17 @@ PrefabInstance:
     - target: {fileID: 5325586063776185130, guid: 2f2feedd025fa3f4a802696e5d3527a2,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.92387956
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5325586063776185130, guid: 2f2feedd025fa3f4a802696e5d3527a2,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.38268343
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5325586063776185130, guid: 2f2feedd025fa3f4a802696e5d3527a2,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -45
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7833593871893397804, guid: 2f2feedd025fa3f4a802696e5d3527a2,
         type: 3}
@@ -3357,7 +3355,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2089064703}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6aaed16d260665044a2c2a0c48b31942, type: 3}
   m_Name: 
