@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 4591771408551479104}
   - component: {fileID: 8311318752012097191}
   - component: {fileID: 5908979732953695316}
+  - component: {fileID: 3224026577762054060}
+  - component: {fileID: 5567373460009487959}
   m_Layer: 0
   m_Name: Orc-warrior
   m_TagString: Enemy
@@ -147,7 +149,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 39781a6f244c3d44b8526e249973de69, type: 2}
-  rb2d: {fileID: 0}
 --- !u!114 &4591771408551479104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,3 +208,73 @@ MonoBehaviour:
       type: 3}
     dropRate: 30
     experienceGrant: 0
+--- !u!114 &3224026577762054060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8137182223778076141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20baccbe293ec1844b6e63a5649cd5c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targets: []
+  obstacles: []
+  currentTarget: {fileID: 0}
+--- !u!114 &5567373460009487959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8137182223778076141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70719b9bf03040d4c8fde00a8a328e9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  steeringBehaviours:
+  - {fileID: 0}
+  - {fileID: 0}
+  detectors:
+  - {fileID: 0}
+  - {fileID: 0}
+  aiData: {fileID: 3224026577762054060}
+  detectionDelay: 0.05
+  aiUpdateDelay: 0.06
+  attackDelay: 1
+  attackDistance: 0.5
+  OnMovementInput:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -2416549773093232254}
+        m_TargetAssemblyTypeName: EnemyMover, Assembly-CSharp
+        m_MethodName: GetPlayerMovementInput
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnPointerInput:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -2416549773093232254}
+        m_TargetAssemblyTypeName: EnemyMover, Assembly-CSharp
+        m_MethodName: GetPlayerPointerInput
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  movementInput: {x: 0, y: 0}
+  movementDirectionSolver: {fileID: 0}

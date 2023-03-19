@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     public Vector2 lastMovedVector;
 
     private Vector2 pointerInput, movementInput;
+
+    
     private void Update()
     {
         pointerInput = GetPointerInput();
@@ -59,13 +61,17 @@ public class PlayerController : MonoBehaviour
     //    attack.action.performed -= PerformAttack;
     //}
 
-    private Vector2 GetPointerInput()
+    public Vector2 GetPointerInput()
     {
         Vector3 mousePos = pointerPosition.action.ReadValue<Vector2>();
         mousePos.z = Camera.main.nearClipPlane;
         return Camera.main.ScreenToWorldPoint(mousePos);
     }
 
+    public Vector2 GetMovementInput()
+    {
+        return movementInput;
+    }
     //private void PerformAttack(InputAction.CallbackContext obj)
     //{
     //    weaponController.Attack();

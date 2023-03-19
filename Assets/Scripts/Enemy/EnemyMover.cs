@@ -10,6 +10,7 @@ public class EnemyMover : MonoBehaviour
     float currentMoveSpeed;
     Rigidbody2D rb2d;
     Vector3 lastPosition;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,4 +41,5 @@ public class EnemyMover : MonoBehaviour
     {
         return lastPosition;
     }
+    
 }
