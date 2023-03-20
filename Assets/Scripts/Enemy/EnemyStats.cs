@@ -38,6 +38,7 @@ public class EnemyStats : MonoBehaviour
     public void TakeDamage(float damage)
     {
         Debug.Log("Take " + damage);
+        GameManager.DoFloatingText(new Vector3(transform.position.x, transform.position.y + 0.5f), damage.ToString(), Color.red);
         currentHealth -= damage;
         if (!isTarget)
         {

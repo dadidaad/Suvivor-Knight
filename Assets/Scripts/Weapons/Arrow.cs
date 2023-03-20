@@ -57,6 +57,10 @@ public class Arrow : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+        if (collider.CompareTag("SolidObject"))
+        {
+            Destroy(gameObject);
+        }
     }
 
 }
