@@ -14,8 +14,8 @@ public class WeaponController : MonoBehaviour
     public GameObject arrowPrefab;
     private bool attackBlocked;
     float currentCoolDown;
-    float currentDamage;
-    float currentSpeed;
+    public float currentDamage;
+    public float currentSpeed;
     public float radius;
     public Transform circleOrigin;
     public bool IsAttacking { get; private set; }

@@ -9,10 +9,22 @@ public enum UpgradeType
     PlayerUpgrade
 }
 
+public enum Star
+{
+    MoveSpeed,
+    Health,
+    Recover,
+    Cooldown,
+    Damage,
+    Speed
+}
+
 [CreateAssetMenu]
 public class UpgradeData : ScriptableObject
 {
     public UpgradeType upgradeType;
+    public Star star;
+    public int value;
     public string Name;
     public Sprite icon;
 }

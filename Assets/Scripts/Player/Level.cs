@@ -89,13 +89,44 @@ public class Level : MonoBehaviour
                 
                 break;
             case UpgradeType.PlayerUpgrade:
-                float currentSpeed = GetComponent<PlayerStats>().currentMoveSpeed;
-                Debug.Log("Current: " + currentSpeed);
-                GetComponent<PlayerStats>().currentMoveSpeed += 2;
-                Debug.Log("After: " + GetComponent<PlayerStats>().currentMoveSpeed);
+                PlayerUpgrade(upgradeData);
                 break;
             case UpgradeType.WeaponUnlock:
+                WeaponUpgrade(upgradeData);
                 break;
+        }
+    }
+
+    private void PlayerUpgrade(UpgradeData upgradeData)
+    {
+        switch (upgradeData.star)
+        {
+            case Star.MoveSpeed:
+                GetComponent<PlayerStats>().currentMoveSpeed += upgradeData.value;
+                break;
+            case Star.Health:
+                GetComponent<PlayerStats>().currentHealth += upgradeData.value;
+                break;
+            case Star.Recover:
+                GetComponent<PlayerStats>().currentRecovery += upgradeData.value;
+                break;
+            default:
+                return;
+        }
+    }
+
+    private void WeaponUpgrade(UpgradeData upgradeData)
+    {
+        switch (upgradeData.star)
+        {
+            case Star.Speed:
+                GetComponent<WeaponController>().currentSpeed += upgradeData.value;
+                break;
+            case Star.Health:
+                GetComponent<WeaponController>().currentDamage += upgradeData.value;
+                break;
+            default:
+                return;
         }
     }
 }

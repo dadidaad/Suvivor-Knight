@@ -8,9 +8,8 @@ public class PlayerStats : MonoBehaviour
 {
     public PlayerScriptableObject playerData;
     public GameObject currentCharacter;
-    internal float currentHealth;
-    internal float currentRecovery;
-    [HideInInspector]
+    public float currentHealth;
+    public float currentRecovery;
     public float currentMoveSpeed;
     PlayerAnimator animator;
     bool isDead = false;
