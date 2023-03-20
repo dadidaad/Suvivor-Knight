@@ -6,6 +6,7 @@ public class TilemapController : MonoBehaviour
 {
     public List<GameObject> terrainChunks;
     public GameObject player;
+    public Transform map;
     public float checkerRadius;
     public Vector3 noTerrainPosition;
     public LayerMask terrianMask;
@@ -110,6 +111,7 @@ public class TilemapController : MonoBehaviour
     {
         int rand = Random.Range(0, terrainChunks.Count);
         lastestChunk = Instantiate(terrainChunks[rand], noTerrainPosition, Quaternion.identity);
+        lastestChunk.transform.SetParent(map);
         spawnedChunks.Add(lastestChunk);    
     }
 
