@@ -16,8 +16,7 @@ GameObject:
   - component: {fileID: 2392336642755151301}
   - component: {fileID: 7183345477182963972}
   - component: {fileID: 49181588639129096}
-  - component: {fileID: 3530986972196197354}
-  - component: {fileID: 343581470033129169}
+  - component: {fileID: 3046584980353773646}
   m_Layer: 0
   m_Name: Skeleton
   m_TagString: Enemy
@@ -213,73 +212,19 @@ MonoBehaviour:
       type: 3}
     dropRate: 5
     experienceGrant: 0
---- !u!114 &3530986972196197354
-MonoBehaviour:
+--- !u!70 &3046584980353773646
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3320583726142666942}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20baccbe293ec1844b6e63a5649cd5c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targets: []
-  obstacles: []
-  currentTarget: {fileID: 0}
---- !u!114 &343581470033129169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3320583726142666942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70719b9bf03040d4c8fde00a8a328e9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  steeringBehaviours:
-  - {fileID: 0}
-  - {fileID: 0}
-  detectors:
-  - {fileID: 0}
-  - {fileID: 0}
-  aiData: {fileID: 3530986972196197354}
-  detectionDelay: 0.05
-  aiUpdateDelay: 0.06
-  attackDelay: 1
-  attackDistance: 0.5
-  OnMovementInput:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2392336642755151301}
-        m_TargetAssemblyTypeName: EnemyMover, Assembly-CSharp
-        m_MethodName: GetPlayerMovementInput
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnPointerInput:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2392336642755151301}
-        m_TargetAssemblyTypeName: EnemyMover, Assembly-CSharp
-        m_MethodName: GetPlayerPointerInput
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  movementInput: {x: 0, y: 0}
-  movementDirectionSolver: {fileID: 0}
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.04155743, y: 0.14129537}
+  m_Size: {x: 0.81714725, y: 1.5924093}
+  m_Direction: 0

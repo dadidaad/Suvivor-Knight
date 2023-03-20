@@ -11,13 +11,11 @@ GameObject:
   - component: {fileID: 595148914877878907}
   - component: {fileID: -7143571786120639943}
   - component: {fileID: 1442255741911206172}
-  - component: {fileID: -4125580624345877829}
   - component: {fileID: -2416549773093232254}
   - component: {fileID: 4591771408551479104}
   - component: {fileID: 8311318752012097191}
   - component: {fileID: 5908979732953695316}
-  - component: {fileID: 3224026577762054060}
-  - component: {fileID: 5567373460009487959}
+  - component: {fileID: 7096126815324310751}
   m_Layer: 0
   m_Name: Orc-warrior
   m_TagString: Enemy
@@ -110,32 +108,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!61 &-4125580624345877829
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8137182223778076141}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.3125, y: 2}
-    newSize: {x: 1.3125, y: 2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.3125, y: 2}
-  m_EdgeRadius: 0
 --- !u!114 &-2416549773093232254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,73 +180,19 @@ MonoBehaviour:
       type: 3}
     dropRate: 30
     experienceGrant: 0
---- !u!114 &3224026577762054060
-MonoBehaviour:
+--- !u!70 &7096126815324310751
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8137182223778076141}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20baccbe293ec1844b6e63a5649cd5c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targets: []
-  obstacles: []
-  currentTarget: {fileID: 0}
---- !u!114 &5567373460009487959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8137182223778076141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70719b9bf03040d4c8fde00a8a328e9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  steeringBehaviours:
-  - {fileID: 0}
-  - {fileID: 0}
-  detectors:
-  - {fileID: 0}
-  - {fileID: 0}
-  aiData: {fileID: 3224026577762054060}
-  detectionDelay: 0.05
-  aiUpdateDelay: 0.06
-  attackDelay: 1
-  attackDistance: 0.5
-  OnMovementInput:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -2416549773093232254}
-        m_TargetAssemblyTypeName: EnemyMover, Assembly-CSharp
-        m_MethodName: GetPlayerMovementInput
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnPointerInput:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -2416549773093232254}
-        m_TargetAssemblyTypeName: EnemyMover, Assembly-CSharp
-        m_MethodName: GetPlayerPointerInput
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  movementInput: {x: 0, y: 0}
-  movementDirectionSolver: {fileID: 0}
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0796237, y: 0.05573666}
+  m_Size: {x: 0.8347573, y: 1.7929783}
+  m_Direction: 0
