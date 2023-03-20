@@ -8,8 +8,8 @@ public class PlayerStats : MonoBehaviour
 {
     public PlayerScriptableObject playerData;
     public GameObject currentCharacter;
-    float currentHealth;
-    float currentRecovery;
+    internal float currentHealth;
+    internal float currentRecovery;
     [HideInInspector]
     public float currentMoveSpeed;
     PlayerAnimator animator;
