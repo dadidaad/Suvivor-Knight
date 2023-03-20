@@ -169,6 +169,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc477cbb807fa84458b19516e85d22a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  starPool: {fileID: 7796079287136571498, guid: ed0f3bcb93acf6745a49256cfb8c143b,
+    type: 3}
   drops:
   - name: Silver Star
     itemPrefab: {fileID: 7259828757483846793, guid: 4a9b838b569006649a69a7fb8bf24bc9,

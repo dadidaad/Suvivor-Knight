@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DropRateManager : MonoBehaviour
 {
+    
     [System.Serializable] 
     public class Drops
     {
@@ -11,10 +12,6 @@ public class DropRateManager : MonoBehaviour
         public GameObject itemPrefab;
         public float dropRate;
         public int experienceGrant;
-    }
-    void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
     }
     public List<Drops> drops;
 
@@ -32,7 +29,7 @@ public class DropRateManager : MonoBehaviour
         if(possibleDrops.Count > 0)
         {
             Drops drops = possibleDrops[Mathf.FloorToInt(UtilsClass.RandomNumber(0f, possibleDrops.Count))];
-            Instantiate(drops.itemPrefab, transform.position, Quaternion.identity);
+            GameObject star = Instantiate(drops.itemPrefab, transform.position, Quaternion.identity);
         }
     }
 }

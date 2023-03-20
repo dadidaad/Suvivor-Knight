@@ -24,6 +24,7 @@ public class EnemySpawn : MonoBehaviour
         public int spawnCount; //number of enemy of this type already spawn this way
         public GameObject enemyPrefab;
     }
+    public Transform enemyPool;
     public List<Wave> waves;
     public int currentWaveCount;
     Transform player;
@@ -94,9 +95,10 @@ public class EnemySpawn : MonoBehaviour
                         return;
                     }
 
-                    Instantiate(enemyGroup.enemyPrefab, player.position +
+                    GameObject enemy = Instantiate(enemyGroup.enemyPrefab, player.position +
                         relativeSpawnPoints[Random.Range(0, relativeSpawnPoints.Count)].position, Quaternion.identity);
                     
+                    enemy.transform.SetParent(enemyPool);
                     enemyGroup.spawnCount++;
                     waves[currentWaveCount].spawnCount++;
                     enemiesAlive++;
