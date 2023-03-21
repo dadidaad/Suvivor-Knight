@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5657325583527211542}
   - component: {fileID: 818499127389169887}
   m_Layer: 0
-  m_Name: FloatingText
+  m_Name: DamagePopUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

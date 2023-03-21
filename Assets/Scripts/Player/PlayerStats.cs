@@ -8,12 +8,12 @@ public class PlayerStats : MonoBehaviour
 {
     public PlayerScriptableObject playerData;
     public GameObject currentCharacter;
-    float currentHealth;
-    float currentRecovery;
-    [HideInInspector]
-    public float currentMoveSpeed;
+    public float currentHealth, currentRecovery, currentMoveSpeed;
+
     PlayerAnimator animator;
-    bool isDead = false;
+    public float health;
+    [HideInInspector]
+    public bool isDead = false;
     [SerializeField]
     StatusBar statusBar;
     // Start is called before the first frame update
@@ -25,7 +25,8 @@ public class PlayerStats : MonoBehaviour
 
     void Awake()
     {
-        currentHealth = playerData.MaxHealth;
+        health = playerData.MaxHealth;
+        currentHealth = health;
         currentRecovery = playerData.Recovery;
         currentMoveSpeed = playerData.MoveSpeed;
         currentCharacter = playerData.Character;
@@ -42,6 +43,11 @@ public class PlayerStats : MonoBehaviour
         else if (isInvinciable)
         {
             isInvinciable = false;
+        }
+
+        if (currentHealth > health)
+        {
+            currentHealth = health;
         }
     }
 
@@ -68,6 +74,6 @@ public class PlayerStats : MonoBehaviour
         isDead = true;
         //Destroy(gameObject, 2);
 
-        StartCoroutine(TimeManager.PasueGame(2));
+        StartCoroutine(TimeManager.PasueGame(1));
     }
 }

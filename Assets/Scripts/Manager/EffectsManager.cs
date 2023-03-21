@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class EffectsManager : MonoBehaviour
 {
-    public GameObject textPrefab;
+    public GameObject damagePrefab;
+    public GameObject notiPrefab;
 }

@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(TMP_Text))]
-public class DamagePopUp : MonoBehaviour
+public class TextPopUp : MonoBehaviour
 {
     [HideInInspector]
     public string displayText;
@@ -16,7 +16,7 @@ public class DamagePopUp : MonoBehaviour
         TMP_Text tmp_text = GetComponent<TMP_Text>();
         tmp_text.text = displayText;
         tmp_text.DOFade(0f, 0.7f);
-        transform.DOMove(transform.position + Vector3.up, 0.75f).OnComplete(() => {
+        transform.DOMove(transform.position + Vector3.up, 0.7f).OnComplete(() => {
             Destroy(gameObject);
         });
     }

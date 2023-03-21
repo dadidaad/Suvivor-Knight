@@ -14,20 +14,21 @@ public class WeaponController : MonoBehaviour
     public GameObject arrowPrefab;
     private bool attackBlocked;
     float currentCoolDown;
-    float currentDamage;
-    float currentSpeed;
+    public float currentDamage;
+    public float currentSpeed;
     public float radius;
     public Transform circleOrigin;
     public bool IsAttacking { get; private set; }
     SpriteRenderer weaponRenderer, characterRenderer;
+    PlayerStats playerStats;
     private void Start()
     {
         currentCoolDown = weaponData.CooldownDuration;
         currentDamage = weaponData.Damage;
         currentSpeed = weaponData.Speed;
         weaponRenderer = weaponData.Prefab.GetComponent<SpriteRenderer>();
-        
-        characterRenderer = gameObject.GetComponentInParent<PlayerStats>().playerData.Character.GetComponent<SpriteRenderer>();
+        playerStats = GetComponentInParent<PlayerStats>();
+        characterRenderer = playerStats.playerData.Character.GetComponent<SpriteRenderer>();
     }
     public void ResetIsAttacking()
     {
@@ -35,34 +36,37 @@ public class WeaponController : MonoBehaviour
     }
     private void Update()
     {
-        currentCoolDown -= Time.deltaTime;
-        if (currentCoolDown <= 0f)
+        if (!playerStats.isDead)
         {
-            Attack();
-        }
-        if (IsAttacking)
-            return;
-        Vector2 direction = (PointerPosition - (Vector2)transform.position).normalized;
-        transform.right = direction;
+            currentCoolDown -= Time.deltaTime;
+            if (currentCoolDown <= 0f)
+            {
+                Attack();
+            }
+            if (IsAttacking)
+                return;
+            Vector2 direction = (PointerPosition - (Vector2)transform.position).normalized;
+            transform.right = direction;
 
-        Vector2 scale = transform.localScale;
-        if (direction.x < 0)
-        {
-            scale.y = -1;
-        }
-        else if (direction.x > 0)
-        {
-            scale.y = 1;
-        }
-        transform.localScale = scale;
+            Vector2 scale = transform.localScale;
+            if (direction.x < 0)
+            {
+                scale.y = -1;
+            }
+            else if (direction.x > 0)
+            {
+                scale.y = 1;
+            }
+            transform.localScale = scale;
 
-        if (transform.eulerAngles.z > 0 && transform.eulerAngles.z < 180)
-        {
-            weaponRenderer.sortingOrder = characterRenderer.sortingOrder - 1;
-        }
-        else
-        {
-            weaponRenderer.sortingOrder = characterRenderer.sortingOrder + 1;
+            if (transform.eulerAngles.z > 0 && transform.eulerAngles.z < 180)
+            {
+                weaponRenderer.sortingOrder = characterRenderer.sortingOrder - 1;
+            }
+            else
+            {
+                weaponRenderer.sortingOrder = characterRenderer.sortingOrder + 1;
+            }
         }
 
     }
