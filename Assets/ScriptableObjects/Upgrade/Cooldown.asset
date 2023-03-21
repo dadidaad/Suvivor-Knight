@@ -15,5 +15,5 @@ MonoBehaviour:
   upgradeType: 0
   star: 3
   value: 0.2
-  Name: Reduce 20% Cooldown weapon
-  icon: {fileID: 0}
+  Name: Cooldown 20%
+  icon: {fileID: 21300000, guid: 757f0510296c2dd4b81a17aefe087d2b, type: 3}
