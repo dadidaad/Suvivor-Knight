@@ -32,13 +32,13 @@ public class Level : MonoBehaviour
         exprienceBar.SetLevelText(level);
         weaponController = GetComponentInChildren<WeaponController>();
         playerStats = GetComponent<PlayerStats>();
-        foreach (UpgradeData upgradeData in upgrades)
+        for (int i = 0; i<upgrades.Count; i++)
         {
-            if(upgradeData.upgradeType == UpgradeType.WeaponUpgrade
-                && upgradeData.star == Star.Speed 
+            if (upgrades[i].upgradeType == UpgradeType.WeaponUpgrade
+                && upgrades[i].star == Star.Speed 
                 && weaponController.weaponData.Type != WeaponScriptableObject.TypeWeapon.Projectile)
             {
-                upgrades.Remove(upgradeData);
+                upgrades.RemoveAt(i);
             }
         }
 
