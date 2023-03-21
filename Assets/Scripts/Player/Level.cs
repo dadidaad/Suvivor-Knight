@@ -128,13 +128,13 @@ public class Level : MonoBehaviour
         switch (upgradeData.star)
         {
             case Star.Speed:
-                weapon.GetComponent<WeaponController>().currentSpeed += (upgradeData.value * GetComponent<WeaponController>().currentSpeed);
+                weapon.GetComponent<WeaponController>().currentSpeed += (upgradeData.value * weapon.GetComponent<WeaponController>().currentSpeed);
                 break;
             case Star.Damage:
-                weapon.GetComponent<WeaponController>().currentDamage += (upgradeData.value * GetComponent<WeaponController>().currentDamage);
+                weapon.GetComponent<WeaponController>().currentDamage += (upgradeData.value * weapon.GetComponent<WeaponController>().currentDamage);
                 break;
             case Star.Cooldown:
-                weapon.GetComponent<WeaponController>().currentCoolDown += (upgradeData.value * GetComponent<WeaponController>().currentCoolDown);
+                weapon.GetComponent<WeaponController>().currentCoolDown += (upgradeData.value * weapon.GetComponent<WeaponController>().currentCoolDown);
                 break;
             default:
                 return;
