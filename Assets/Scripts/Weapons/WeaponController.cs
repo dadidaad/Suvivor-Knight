@@ -25,7 +25,7 @@ public class WeaponController : MonoBehaviour
     private void Start()
     {
         panel.active = true;
-
+        Time.timeScale = 0;
     }
     public void ResetIsAttacking()
     {
@@ -74,10 +74,7 @@ public class WeaponController : MonoBehaviour
     {
         if (attackBlocked)
             return;
-        if (animator != null && animator.isActiveAndEnabled)
-        {
-            animator.SetTrigger("Attack");
-        }
+        animator.SetTrigger("Attack");
         
         if(weaponData.Type == WeaponScriptableObject.TypeWeapon.Projectile)
         {
@@ -133,5 +130,6 @@ public class WeaponController : MonoBehaviour
             transform.FindChild("Machete").gameObject.SetActive(true);
         }
         panel.active = false;
+        Time.timeScale = 1;
     }
 }

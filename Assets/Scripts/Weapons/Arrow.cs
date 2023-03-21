@@ -48,14 +48,10 @@ public class Arrow : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.CompareTag("Enemy"))
+        if (collider.CompareTag("Enemy") || collider.CompareTag("Drops"))
         {
-            EnemyStats enemyStats = collider.GetComponent<EnemyStats>();
-            if(enemyStats != null)
-            {
-                enemyStats.TakeDamage(damage);
-                Destroy(gameObject);
-            }
+            IDamageable damageable = collider.GetComponent<IDamageable>();
+            damageable.TakeDamage(damage);
         }
         if (collider.CompareTag("SolidObject"))
         {
