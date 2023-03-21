@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using UnityEngine;
 
-public class EnemyStats : MonoBehaviour
+public class EnemyStats : MonoBehaviour, IDamageable
 {
     [Header("Enemy Stats")]
     public EnemyScriptableObject enemyData;
@@ -75,8 +75,8 @@ public class EnemyStats : MonoBehaviour
     {
         if (collision.collider.CompareTag("Player"))
         {
-            PlayerStats playerStats = collision.gameObject.GetComponent<PlayerStats>();
-            Attack(playerStats);
+            IDamageable damageable = collision.collider.GetComponent<IDamageable>();
+            damageable.TakeDamage(currentDamage);
         }
     }
 
@@ -86,13 +86,6 @@ public class EnemyStats : MonoBehaviour
         if(enemySpawn != null)
         {
             enemySpawn.OnEnemyKilled();
-        }
-    }
-    private void Attack(PlayerStats playerStats)
-    {
-        if(playerStats != null)
-        {
-            playerStats.TakeDamage(currentDamage);
         }
     }
 }

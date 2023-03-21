@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class DropRateManager : MonoBehaviour
 {
@@ -14,9 +15,15 @@ public class DropRateManager : MonoBehaviour
         public int experienceGrant;
     }
     public List<Drops> drops;
+    bool isQuiting = false;
 
+    private void OnApplicationQuit()
+    {
+        isQuiting = true;
+    }
     void OnDestroy()
     {
+        if(isQuiting) { return; }
         float randomNumber = UtilsClass.RandomNumber(0f, 100f);
         List<Drops> possibleDrops = new List<Drops>();
         foreach(Drops drop in drops)
@@ -30,6 +37,8 @@ public class DropRateManager : MonoBehaviour
         {
             Drops drops = possibleDrops[Mathf.FloorToInt(UtilsClass.RandomNumber(0f, possibleDrops.Count))];
             GameObject star = Instantiate(drops.itemPrefab, transform.position, Quaternion.identity);
+            GameObject terrianCurrent = FindObjectOfType<TilemapController>().currentChunk;
+            star.transform.SetParent(terrianCurrent.transform);
         }
     }
 }

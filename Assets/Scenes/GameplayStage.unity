@@ -582,6 +582,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 505182953}
     m_Modifications:
+    - target: {fileID: 134152475094931588, guid: 7a31947d2d83d2c4583c0e070b7e8df8,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 230896208637944038, guid: 7a31947d2d83d2c4583c0e070b7e8df8,
         type: 3}
       propertyPath: m_Offset.x
@@ -3202,6 +3207,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Terrain Chunk 1
       objectReference: {fileID: 0}
+    - target: {fileID: 230896209044353349, guid: 7a31947d2d83d2c4583c0e070b7e8df8,
+        type: 3}
+      propertyPath: m_TagString
+      value: Terrian
+      objectReference: {fileID: 0}
     - target: {fileID: 230896209044353726, guid: 7a31947d2d83d2c4583c0e070b7e8df8,
         type: 3}
       propertyPath: m_RootOrder
@@ -4878,6 +4888,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1021097877 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1224096746922566705, guid: 7a31947d2d83d2c4583c0e070b7e8df8,
+    type: 3}
+  m_PrefabInstance: {fileID: 244146622}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1049658608
 GameObject:
   m_ObjectHideFlags: 0
@@ -5472,6 +5488,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1414465563 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8854706299964263172, guid: 7a31947d2d83d2c4583c0e070b7e8df8,
+    type: 3}
+  m_PrefabInstance: {fileID: 244146622}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1486169225
 GameObject:
   m_ObjectHideFlags: 0
@@ -6549,7 +6571,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exprienceBar: {fileID: 1783523565}
-  weapon: {fileID: 74012006}
   experience: 0
   level: 1
   experienceCap: 0
@@ -6574,6 +6595,29 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 60fa9467e406cbb41b1255a98b7d5054, type: 2}
   - {fileID: 11400000, guid: cca5bb225cebb33499a2ef2c4521b87e, type: 2}
   - {fileID: 11400000, guid: bd24647fa0cea67498e0c8b29f991322, type: 2}
+--- !u!1 &1981830405 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2013062503122110440, guid: 7a31947d2d83d2c4583c0e070b7e8df8,
+    type: 3}
+  m_PrefabInstance: {fileID: 244146622}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1981830407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981830405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9351178da51363d4a9fada1207362f44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoints:
+  - {fileID: 1414465563}
+  - {fileID: 1021097877}
+  toSpawn: {fileID: 2891062564385326581, guid: 66b6287990dda6440b9864f8634ea700, type: 3}
+  probability: 0.22
 --- !u!1 &1982762553
 GameObject:
   m_ObjectHideFlags: 0
@@ -6685,6 +6729,26 @@ MonoBehaviour:
   enemyPool: {fileID: 210149457}
   waves:
   - name: Wave 1
+    enemyGroups:
+    - enemyName: Orc
+      enemyCount: 10
+      spawnCount: 0
+      enemyPrefab: {fileID: 8434601030379257041, guid: 9fc9bb07ff5d2244ea3d61ed57135509,
+        type: 3}
+    - enemyName: Orc-warrior
+      enemyCount: 10
+      spawnCount: 0
+      enemyPrefab: {fileID: 8137182223778076141, guid: f9315ce7e4c2dc64586233a0e0d20d50,
+        type: 3}
+    - enemyName: Skeleton
+      enemyCount: 10
+      spawnCount: 0
+      enemyPrefab: {fileID: 3320583726142666942, guid: 67f73c2d93f827540a76efe1aeb365e5,
+        type: 3}
+    waveQuota: 0
+    spawnInterval: 2
+    spawnCount: 0
+  - name: Wave 2
     enemyGroups:
     - enemyName: Orc
       enemyCount: 10
