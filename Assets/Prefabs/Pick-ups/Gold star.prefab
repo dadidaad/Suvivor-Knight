@@ -99,6 +99,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isSuck: 0
   experienceGranted: 50
+  speed: 30
+  minDistance: 0.09
 --- !u!60 &2516063747184164119
 PolygonCollider2D:
   m_ObjectHideFlags: 0

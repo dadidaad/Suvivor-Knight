@@ -7,9 +7,9 @@ TagManager:
   - SolidObject
   - Weapon
   - Enemy
+  - DropsItem
   - Drops
   - Gem
-  - DropsItem
   - Terrian
   layers:
   - Default

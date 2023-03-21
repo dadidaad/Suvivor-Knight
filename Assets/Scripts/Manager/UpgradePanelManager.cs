@@ -7,9 +7,6 @@ public class UpgradePanelManager : MonoBehaviour
     [SerializeField] GameObject panel;
     [SerializeField] List<UpgradeButton> upgradeButtons;
     [SerializeField] GameObject notificationPanel;
-    private void Awake()
-    {
-    }
 
     public void OpenPanel(List<UpgradeData> upgradeDatas)
     {
@@ -39,4 +36,5 @@ public class UpgradePanelManager : MonoBehaviour
         GameObject.FindGameObjectWithTag("Player").GetComponent<Level>().Upgrade(pressedButtonId);
         ClosePanel();
     }
+
 }

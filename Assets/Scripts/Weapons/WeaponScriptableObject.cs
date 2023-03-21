@@ -6,7 +6,7 @@ using UnityEngine;
 public class WeaponScriptableObject : ScriptableObject
 {
     [SerializeField]
-    GameObject prefab;
+    public GameObject prefab;
     public GameObject Prefab { get => prefab; private set => prefab = value; }
 
     //Base stats for the weapon
