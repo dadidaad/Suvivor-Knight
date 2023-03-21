@@ -6,8 +6,6 @@ public class Level : MonoBehaviour
 {
     [SerializeField]
     ExprienceBar exprienceBar;
-    [SerializeField]
-    GameObject weapon;
     [Header("Experience/Level")]
     public int experience = 0;
     public int level = 1;
@@ -20,7 +18,8 @@ public class Level : MonoBehaviour
         public int endLevel;
         public int experienceCapIncrease;
     }
-
+    WeaponController weaponController;
+    PlayerStats playerStats;
     public List<LevelRange> levelRanges;
     [SerializeField] UpgradePanelManager upgradePanel;
     [SerializeField] List<UpgradeData> upgrades;
@@ -31,6 +30,17 @@ public class Level : MonoBehaviour
         experienceCap = levelRanges[0].experienceCapIncrease;
         exprienceBar.UpdateExprienceSlider(experience, experienceCap);
         exprienceBar.SetLevelText(level);
+        weaponController = GetComponentInChildren<WeaponController>();
+        playerStats = GetComponent<PlayerStats>();
+        foreach (UpgradeData upgradeData in upgrades)
+        {
+            if(upgradeData.upgradeType == UpgradeType.WeaponUpgrade
+                && upgradeData.star == Star.Speed 
+                && weaponController.weaponData.Type != WeaponScriptableObject.TypeWeapon.Projectile)
+            {
+                upgrades.Remove(upgradeData);
+            }
+        }
 
     }
 
@@ -103,19 +113,19 @@ public class Level : MonoBehaviour
         switch (upgradeData.star)
         {
             case Star.MoveSpeed:
-                GetComponent<PlayerStats>().currentMoveSpeed += (upgradeData.value * GetComponent<PlayerStats>().currentMoveSpeed);
+                playerStats.currentMoveSpeed += (upgradeData.value * playerStats.currentMoveSpeed);
                 break;
             case Star.Health:
-                GetComponent<PlayerStats>().currentHealth += (upgradeData.value * GetComponent<PlayerStats>().currentHealth);
-                GetComponent<PlayerStats>().health += GetComponent<PlayerStats>().currentHealth *= (upgradeData.value * GetComponent<PlayerStats>().currentHealth);
+                playerStats.currentHealth += (upgradeData.value * playerStats.currentHealth);
+                playerStats.health +=  (upgradeData.value * playerStats.currentHealth);
                 ;
                 break;
             case Star.Recover:
-                if(GetComponent<PlayerStats>().currentRecovery == 0)
+                if(playerStats.currentRecovery == 0)
                 {
-                    GetComponent<PlayerStats>().currentRecovery = 5;
+                    playerStats.currentRecovery = 2;
                 }
-                GetComponent<PlayerStats>().currentRecovery += (upgradeData.value * GetComponent<PlayerStats>().currentRecovery);
+                playerStats.currentRecovery += (upgradeData.value * playerStats.currentRecovery);
                 break;
             default:
                 return;
@@ -124,17 +134,16 @@ public class Level : MonoBehaviour
 
     private void WeaponUpgrade(UpgradeData upgradeData)
     {
-        GameObject weapon = GameObject.FindGameObjectWithTag("Weapon");
         switch (upgradeData.star)
         {
             case Star.Speed:
-                weapon.GetComponent<WeaponController>().currentSpeed += (upgradeData.value * weapon.GetComponent<WeaponController>().currentSpeed);
+                weaponController.currentSpeed += (upgradeData.value * weaponController.currentSpeed);
                 break;
             case Star.Damage:
-                weapon.GetComponent<WeaponController>().currentDamage += (upgradeData.value * weapon.GetComponent<WeaponController>().currentDamage);
+                weaponController.currentDamage += (upgradeData.value * weaponController.currentDamage);
                 break;
             case Star.Cooldown:
-                weapon.GetComponent<WeaponController>().currentCoolDown += (upgradeData.value * weapon.GetComponent<WeaponController>().currentCoolDown);
+                weaponController.currentCoolDown += (upgradeData.value * weaponController.currentCoolDown);
                 break;
             default:
                 return;

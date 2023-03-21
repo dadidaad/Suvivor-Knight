@@ -106,10 +106,10 @@ public class WeaponController : MonoBehaviour
     {
         foreach (Collider2D collider in Physics2D.OverlapCircleAll(circleOrigin.position, radius))
         {
-            if (collider.CompareTag("Enemy"))
+            if (collider.CompareTag("Enemy") || collider.CompareTag("Drops"))
             {
-                EnemyStats enemyStats = collider.GetComponent<EnemyStats>();
-                enemyStats.TakeDamage(currentDamage);
+                IDamageable damageable = collider.GetComponent<IDamageable>();
+                damageable.TakeDamage(currentDamage);
             }
         }
     }
