@@ -5212,7 +5212,7 @@ MonoBehaviour:
   - {fileID: 3626527595649514552}
   - {fileID: 3081914525911934834}
   toSpawn: {fileID: 2891062564385326581, guid: 66b6287990dda6440b9864f8634ea700, type: 3}
-  probability: 0.22
+  probability: 0.1
 --- !u!1 &2594627955684788251
 GameObject:
   m_ObjectHideFlags: 0
