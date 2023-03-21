@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d2d2c8fef1b04644892ef052575d357, type: 3}
-  m_Name: Damege +2
+  m_Name: Cooldown
   m_EditorClassIdentifier: 
   upgradeType: 0
-  star: 4
-  value: 2
-  Name: Damage + 2
-  icon: {fileID: 21300000, guid: 6af73daea005e074180aa5918f474e2d, type: 3}
+  star: 3
+  value: 0.2
+  Name: Cooldown
+  icon: {fileID: 0}

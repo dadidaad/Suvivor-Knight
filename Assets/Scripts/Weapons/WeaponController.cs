@@ -13,7 +13,7 @@ public class WeaponController : MonoBehaviour
     public float delay = 0.3f;
     public GameObject arrowPrefab;
     private bool attackBlocked;
-    float currentCoolDown;
+    public float currentCoolDown;
     public float currentDamage;
     public float currentSpeed;
     public float radius;

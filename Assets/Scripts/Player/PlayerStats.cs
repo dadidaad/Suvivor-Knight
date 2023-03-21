@@ -22,7 +22,7 @@ public class PlayerStats : MonoBehaviour
     public float invincibilityDuration;
     float invincibilityTimer;
     bool isInvinciable;
-
+    float timeInterval = 0;
     void Awake()
     {
         health = playerData.MaxHealth;
@@ -36,6 +36,7 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timeInterval += Time.deltaTime;
         if(invincibilityTimer > 0)
         {
             invincibilityTimer -= Time.deltaTime;
@@ -45,10 +46,16 @@ public class PlayerStats : MonoBehaviour
             isInvinciable = false;
         }
 
+        if(timeInterval >= 1f)
+        {
+            timeInterval = 0;
+            currentHealth += currentRecovery;
+        }
         if (currentHealth > health)
         {
             currentHealth = health;
         }
+        
     }
 
     public void TakeDamage(float damage)

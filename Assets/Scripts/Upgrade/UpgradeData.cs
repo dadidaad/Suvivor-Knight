@@ -19,12 +19,12 @@ public enum Star
     Speed
 }
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "UpgradeDataScriptableObject", menuName = "ScriptableObjects/UpgradeData")]
 public class UpgradeData : ScriptableObject
 {
     public UpgradeType upgradeType;
     public Star star;
-    public int value;
+    public float value;
     public string Name;
     public Sprite icon;
 }

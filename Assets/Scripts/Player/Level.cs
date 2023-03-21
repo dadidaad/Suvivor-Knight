@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static PlayerStats;
 
 public class Level : MonoBehaviour
 {
@@ -104,14 +103,19 @@ public class Level : MonoBehaviour
         switch (upgradeData.star)
         {
             case Star.MoveSpeed:
-                GetComponent<PlayerStats>().currentMoveSpeed += upgradeData.value;
+                GetComponent<PlayerStats>().currentMoveSpeed += (upgradeData.value * GetComponent<PlayerStats>().currentMoveSpeed);
                 break;
             case Star.Health:
-                GetComponent<PlayerStats>().currentHealth += upgradeData.value;
-                GetComponent<PlayerStats>().health += upgradeData.value;
+                GetComponent<PlayerStats>().currentHealth += (upgradeData.value * GetComponent<PlayerStats>().currentHealth);
+                GetComponent<PlayerStats>().health += GetComponent<PlayerStats>().currentHealth *= (upgradeData.value * GetComponent<PlayerStats>().currentHealth);
+                ;
                 break;
             case Star.Recover:
-                GetComponent<PlayerStats>().currentRecovery += upgradeData.value;
+                if(GetComponent<PlayerStats>().currentRecovery == 0)
+                {
+                    GetComponent<PlayerStats>().currentRecovery = 5;
+                }
+                GetComponent<PlayerStats>().currentRecovery += (upgradeData.value * GetComponent<PlayerStats>().currentRecovery);
                 break;
             default:
                 return;
@@ -124,10 +128,13 @@ public class Level : MonoBehaviour
         switch (upgradeData.star)
         {
             case Star.Speed:
-                weapon.GetComponent<WeaponController>().currentSpeed += upgradeData.value;
+                weapon.GetComponent<WeaponController>().currentSpeed += (upgradeData.value * GetComponent<WeaponController>().currentSpeed);
                 break;
             case Star.Damage:
-                weapon.GetComponent<WeaponController>().currentDamage += upgradeData.value;
+                weapon.GetComponent<WeaponController>().currentDamage += (upgradeData.value * GetComponent<WeaponController>().currentDamage);
+                break;
+            case Star.Cooldown:
+                weapon.GetComponent<WeaponController>().currentCoolDown += (upgradeData.value * GetComponent<WeaponController>().currentCoolDown);
                 break;
             default:
                 return;
