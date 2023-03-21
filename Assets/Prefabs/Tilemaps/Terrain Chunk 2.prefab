@@ -5634,7 +5634,7 @@ MonoBehaviour:
   - {fileID: 1415083658800948051}
   - {fileID: 1624469579853135616}
   toSpawn: {fileID: 2891062564385326581, guid: 66b6287990dda6440b9864f8634ea700, type: 3}
-  probability: 0.22
+  probability: 0.1
 --- !u!1 &7960856020012424490
 GameObject:
   m_ObjectHideFlags: 0
