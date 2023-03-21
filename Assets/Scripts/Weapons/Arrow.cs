@@ -53,6 +53,16 @@ public class Arrow : MonoBehaviour
             IDamageable damageable = collider.GetComponent<IDamageable>();
             damageable.TakeDamage(damage);
         }
+        if (collider.CompareTag("Boss"))
+        {
+            BossHealth bossHealth = collider.GetComponent<BossHealth>();
+            if (bossHealth != null)
+            {
+                bossHealth.TakeDamage(damage);
+                Destroy(gameObject);
+            }
+
+        }
         if (collider.CompareTag("SolidObject"))
         {
             Destroy(gameObject);

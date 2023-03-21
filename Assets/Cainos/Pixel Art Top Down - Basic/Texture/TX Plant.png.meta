@@ -492,7 +492,7 @@ TextureImporter:
       213: -1169153397740955191
     second: TX Plant_74
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -509,10 +509,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -551,6 +553,8 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -574,6 +578,18 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 1
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
@@ -2164,9 +2180,84 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      TX Plant_49: 5489158074601711578
+      TX Plant_65: 1169111316192729861
+      TX Plant_44: -5286235066100612719
+      TX Plant_1: -4181601160242843456
+      TX Plant_13: -813630121160539150
+      TX Plant_18: 285865371628332569
+      TX Plant_36: 8226236222650947955
+      TX Plant_17: 1588864095992348336
+      TX Plant_46: -5988205207678867883
+      TX Plant_11: 8308598747488745580
+      TX Plant_67: -1508517758580546282
+      TX Plant_12: 5474419559731158034
+      TX Plant_29: 4505519765507375061
+      TX Plant_42: 7629996980999204179
+      TX Plant_26: 8440394413153556098
+      TX Plant_24: 3187836368505657787
+      TX Plant_71: 5440799422657938214
+      TX Plant_74: -1169153397740955191
+      TX Plant_41: 3856036389684375670
+      TX Plant_33: 4922736098423804273
+      TX Plant_56: 8274398730391320233
+      TX Plant_66: -6209767362128333939
+      TX Plant_20: -5840665122637402067
+      TX Plant_9: -4067435459396679998
+      TX Plant_62: -3519185041480760545
+      TX Plant_39: 866959124766461029
+      TX Plant_55: -6335210460978628186
+      TX Plant_68: -2963822434237080797
+      TX Plant_73: 8275936377832815375
+      TX Plant_6: 1149584892168664425
+      TX Plant_43: -1022430642625937376
+      TX Plant_27: -7607766161023682193
+      TX Plant_59: -4980147055700712752
+      TX Plant_61: -6507104891860251634
+      TX Plant_5: 3793301123250259786
+      TX Plant_69: -6432398763594867228
+      TX Plant_35: -4050449100383495790
+      TX Plant_2: 6212027134239493093
+      TX Plant_53: -4582550251411648483
+      TX Plant_47: 750134192692921732
+      TX Plant_15: 4887785052923593483
+      TX Plant_51: -3951330958914956529
+      TX Plant_72: -7231285894354950204
+      TX Plant_57: -1872101727548602500
+      TX Plant_0: 7393824619407222304
+      TX Plant_16: -669106929187006681
+      TX Plant_48: 8539764288606052588
+      TX Plant_22: -618045075276401279
+      TX Plant_25: -2757913291816662018
+      TX Plant_4: 8229732441688533532
+      TX Plant_34: -3678471927530781375
+      TX Plant_23: 2652889518907116015
+      TX Plant_8: 8743813339972885927
+      TX Plant_31: -3870526028348294108
+      TX Plant_52: -6798161698975977390
+      TX Plant_40: -896291435601255283
+      TX Plant_64: 1373154500269988645
+      TX Plant_19: -5677458682547464731
+      TX Plant_10: 6355068571657321531
+      TX Plant_30: -3227843213291065170
+      TX Plant_7: 7718867192508710523
+      TX Plant_32: 3811010056531059034
+      TX Plant_14: 3084262300659187285
+      TX Plant_58: 6484356496086476152
+      TX Plant_37: 2149675645400782493
+      TX Plant_70: -8658160330080294048
+      TX Plant_54: 384833263890384331
+      TX Plant_63: 380701301426154523
+      TX Plant_60: -596551034433369178
+      TX Plant_38: -7728563684883260185
+      TX Plant_28: -5183921068800378060
+      TX Plant_3: 8387603877276295833
+      TX Plant_45: -81601490479645620
+      TX Plant_21: -5343987475862678200
+      TX Plant_50: 7787090382966679125
   spritePackingTag: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
