@@ -107,6 +107,12 @@ public class WeaponController : MonoBehaviour
                 EnemyStats enemyStats = collider.GetComponent<EnemyStats>();
                 enemyStats.TakeDamage(currentDamage);
             }
+
+            if (collider.CompareTag("Boss"))
+            {
+                BossHealth bossHealth = collider.GetComponent<BossHealth>();
+                bossHealth.TakeDamage(currentDamage);
+            }
         }
     }
 

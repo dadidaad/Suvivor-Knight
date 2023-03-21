@@ -57,6 +57,16 @@ public class Arrow : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+        if (collider.CompareTag("Boss"))
+        {
+            BossHealth bossHealth = collider.GetComponent<BossHealth>();
+            if (bossHealth != null)
+            {
+                bossHealth.TakeDamage(damage);
+                Destroy(gameObject);
+            }
+
+        }
         if (collider.CompareTag("SolidObject"))
         {
             Destroy(gameObject);

@@ -15,7 +15,7 @@ public class PlayerStats : MonoBehaviour
     [HideInInspector]
     public bool isDead = false;
     [SerializeField]
-    StatusBar statusBar;
+    public StatusBar statusBar;
     // Start is called before the first frame update
 
     [Header("I-Frames")]

@@ -57,7 +57,7 @@ TextureImporter:
       213: -7862240552365407346
     second: Wood_17
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -74,10 +74,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -116,6 +118,8 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -131,6 +135,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -532,9 +548,27 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Wood_15: -8746745859066350737
+      Wood_2: 3762640852321080547
+      Wood_6: 3228662599699316609
+      Wood_4: 1135088928692803280
+      Wood_12: 8055832027154201287
+      Wood_14: 833162919106771973
+      Wood_5: -3671240662380257056
+      Wood_8: 5789874280658644899
+      Wood_13: -8689056887888331274
+      Wood_16: 3153871905384636381
+      Wood_17: -7862240552365407346
+      Wood_10: -2237756762598508969
+      Wood_11: -8227781380735155357
+      Wood_0: -2067898546876541913
+      Wood_7: 5370509177723687733
+      Wood_1: 2452868899569839818
+      Wood_3: -6984379183983152048
+      Wood_9: 8198346204976274233
   spritePackingTag: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
