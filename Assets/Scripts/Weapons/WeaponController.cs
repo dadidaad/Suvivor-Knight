@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
-
+    [SerializeField] GameObject panel;
+    public List<WeaponScriptableObject> listWeaponData;
     [Header("Weapon Stats")]
     public WeaponScriptableObject weaponData;
     PlayerStats stats;
@@ -23,12 +24,8 @@ public class WeaponController : MonoBehaviour
     PlayerStats playerStats;
     private void Start()
     {
-        currentCoolDown = weaponData.CooldownDuration;
-        currentDamage = weaponData.Damage;
-        currentSpeed = weaponData.Speed;
-        weaponRenderer = weaponData.Prefab.GetComponent<SpriteRenderer>();
-        playerStats = GetComponentInParent<PlayerStats>();
-        characterRenderer = playerStats.playerData.Character.GetComponent<SpriteRenderer>();
+        panel.active = true;
+
     }
     public void ResetIsAttacking()
     {
@@ -36,45 +33,52 @@ public class WeaponController : MonoBehaviour
     }
     private void Update()
     {
-        if (!playerStats.isDead)
+        if (panel.active == false)
         {
-            currentCoolDown -= Time.deltaTime;
-            if (currentCoolDown <= 0f)
+            if (!GetComponentInParent<PlayerStats>().isDead)
             {
-                Attack();
-            }
-            if (IsAttacking)
-                return;
-            Vector2 direction = (PointerPosition - (Vector2)transform.position).normalized;
-            transform.right = direction;
+                currentCoolDown -= Time.deltaTime;
+                if (currentCoolDown <= 0f)
+                {
+                    Attack();
+                }
+                if (IsAttacking)
+                    return;
+                Vector2 direction = (PointerPosition - (Vector2)transform.position).normalized;
+                transform.right = direction;
 
-            Vector2 scale = transform.localScale;
-            if (direction.x < 0)
-            {
-                scale.y = -1;
-            }
-            else if (direction.x > 0)
-            {
-                scale.y = 1;
-            }
-            transform.localScale = scale;
+                Vector2 scale = transform.localScale;
+                if (direction.x < 0)
+                {
+                    scale.y = -1;
+                }
+                else if (direction.x > 0)
+                {
+                    scale.y = 1;
+                }
+                transform.localScale = scale;
 
-            if (transform.eulerAngles.z > 0 && transform.eulerAngles.z < 180)
-            {
-                weaponRenderer.sortingOrder = characterRenderer.sortingOrder - 1;
+                if (transform.eulerAngles.z > 0 && transform.eulerAngles.z < 180)
+                {
+                    weaponRenderer.sortingOrder = characterRenderer.sortingOrder - 1;
+                }
+                else
+                {
+                    weaponRenderer.sortingOrder = characterRenderer.sortingOrder + 1;
+                }
             }
-            else
-            {
-                weaponRenderer.sortingOrder = characterRenderer.sortingOrder + 1;
-            }
+
         }
-
     }
     public void Attack()
     {
         if (attackBlocked)
             return;
-        animator.SetTrigger("Attack");
+        if (animator != null && animator.isActiveAndEnabled)
+        {
+            animator.SetTrigger("Attack");
+        }
+        
         if(weaponData.Type == WeaponScriptableObject.TypeWeapon.Projectile)
         {
             ProjectileAttack();
@@ -110,4 +114,24 @@ public class WeaponController : MonoBehaviour
         }
     }
 
+    public void ChooseWeapon(int pressedButtonId)
+    {
+        weaponData = listWeaponData[pressedButtonId];
+        animator = weaponData.Prefab.GetComponent<Animator>();
+        currentCoolDown = weaponData.CooldownDuration;
+        currentDamage = weaponData.Damage;
+        currentSpeed = weaponData.Speed;
+        weaponRenderer = weaponData.Prefab.GetComponent<SpriteRenderer>();
+        playerStats = GetComponentInParent<PlayerStats>();
+        characterRenderer = playerStats.playerData.Character.GetComponent<SpriteRenderer>();
+        if (pressedButtonId == 0)
+        {
+            transform.FindChild("Bone").gameObject.SetActive(true);
+        }
+        else
+        {
+            transform.FindChild("Machete").gameObject.SetActive(true);
+        }
+        panel.active = false;
+    }
 }

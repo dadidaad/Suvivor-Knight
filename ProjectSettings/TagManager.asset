@@ -7,6 +7,8 @@ TagManager:
   - SolidObject
   - Weapon
   - Enemy
+  - Bow
+  - Machete
   layers:
   - Default
   - TransparentFX
