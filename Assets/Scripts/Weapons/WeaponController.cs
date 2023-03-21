@@ -119,22 +119,28 @@ public class WeaponController : MonoBehaviour
 
     public void ChooseWeapon(int pressedButtonId)
     {
+        GameObject Bow = transform.Find("Bone").gameObject;
+        GameObject Machete = transform.Find("Machete").gameObject;
+        if (pressedButtonId == 0)
+        {
+            Bow.SetActive(true);
+            Machete.SetActive(false);
+            animator = Bow.GetComponent<Animator>();
+        }
+        else
+        {
+            Machete.SetActive(true);
+            Bow.SetActive(false);
+            animator = Machete.GetComponent<Animator>();
+        }
         weaponData = listWeaponData[pressedButtonId];
-        animator = weaponData.Prefab.GetComponent<Animator>();
+        
         currentCoolDown = weaponData.CooldownDuration;
         currentDamage = weaponData.Damage;
         currentSpeed = weaponData.Speed;
         weaponRenderer = weaponData.Prefab.GetComponent<SpriteRenderer>();
         playerStats = GetComponentInParent<PlayerStats>();
         characterRenderer = playerStats.playerData.Character.GetComponent<SpriteRenderer>();
-        if (pressedButtonId == 0)
-        {
-            transform.FindChild("Bone").gameObject.SetActive(true);
-        }
-        else
-        {
-            transform.FindChild("Machete").gameObject.SetActive(true);
-        }
         panel.active = false;
         Time.timeScale = 1;
     }
