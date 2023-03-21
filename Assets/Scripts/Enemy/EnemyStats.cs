@@ -17,8 +17,8 @@ public class EnemyStats : MonoBehaviour, IDamageable
     bool isTarget = false;
     Color defaultColor;
     EnemyMover enemyMover;
-    Collider2D collider;
-    Rigidbody2D rigidbody2D;
+    Collider2D myCollider;
+    Rigidbody2D myRb2d;
     void Awake()
     {
         currentMoveSpeed = enemyData.MoveSpeed;
@@ -28,8 +28,8 @@ public class EnemyStats : MonoBehaviour, IDamageable
         spriteRenderer = GetComponent<SpriteRenderer>();
         defaultColor = spriteRenderer.color;
         enemyMover = GetComponent<EnemyMover>();
-        collider =  GetComponent<Collider2D>();
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        myCollider =  GetComponent<Collider2D>();
+        myRb2d = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -58,8 +58,8 @@ public class EnemyStats : MonoBehaviour, IDamageable
         
         animator.SetBool("Dead", true);
         isDead = true;
-        Destroy(collider);
-        Destroy(rigidbody2D);
+        Destroy(myCollider);
+        Destroy(myRb2d);
         Destroy(gameObject, 1);
     }
 

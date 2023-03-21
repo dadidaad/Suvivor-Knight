@@ -32,7 +32,9 @@ public class WeaponScriptableObject : ScriptableObject
     public TypeWeapon Type { get => type; private set => type = value; }
 
 
-
+    [SerializeField]
+    public GameObject projectileWeapon;
+    public GameObject ProjectileWeapon { get => type == TypeWeapon.Projectile? projectileWeapon : null; private set => projectileWeapon = value; }
     public enum TypeWeapon
     {
         Melee,

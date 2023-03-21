@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
-    [SerializeField] GameObject panel;
-    public List<WeaponScriptableObject> listWeaponData;
     [Header("Weapon Stats")]
     public WeaponScriptableObject weaponData;
     PlayerStats stats;
     public Vector2 PointerPosition { get; set; }
+    [HideInInspector]
     public Animator animator;
     public float delay = 0.3f;
     public GameObject arrowPrefab;
@@ -24,8 +23,9 @@ public class WeaponController : MonoBehaviour
     PlayerStats playerStats;
     private void Start()
     {
-        panel.active = true;
-        Time.timeScale = 0;
+        IsAttacking = false;
+        playerStats = GetComponentInParent<PlayerStats>();
+        characterRenderer = playerStats.playerData.Character.GetComponent<SpriteRenderer>();
     }
     public void ResetIsAttacking()
     {
@@ -33,42 +33,39 @@ public class WeaponController : MonoBehaviour
     }
     private void Update()
     {
-        if (panel.active == false)
+        if (!playerStats.isDead)
         {
-            if (!GetComponentInParent<PlayerStats>().isDead)
+            currentCoolDown -= Time.deltaTime;
+            if (currentCoolDown <= 0f)
             {
-                currentCoolDown -= Time.deltaTime;
-                if (currentCoolDown <= 0f)
-                {
-                    Attack();
-                }
-                if (IsAttacking)
-                    return;
-                Vector2 direction = (PointerPosition - (Vector2)transform.position).normalized;
-                transform.right = direction;
-
-                Vector2 scale = transform.localScale;
-                if (direction.x < 0)
-                {
-                    scale.y = -1;
-                }
-                else if (direction.x > 0)
-                {
-                    scale.y = 1;
-                }
-                transform.localScale = scale;
-
-                if (transform.eulerAngles.z > 0 && transform.eulerAngles.z < 180)
-                {
-                    weaponRenderer.sortingOrder = characterRenderer.sortingOrder - 1;
-                }
-                else
-                {
-                    weaponRenderer.sortingOrder = characterRenderer.sortingOrder + 1;
-                }
+                Attack();
             }
+            if (IsAttacking)
+                return;
+            Vector2 direction = (PointerPosition - (Vector2)transform.position).normalized;
+            transform.right = direction;
 
+            Vector2 scale = transform.localScale;
+            if (direction.x < 0)
+            {
+                scale.y = -1;
+            }
+            else if (direction.x > 0)
+            {
+                scale.y = 1;
+            }
+            transform.localScale = scale;
+
+            if (transform.eulerAngles.z > 0 && transform.eulerAngles.z < 180)
+            {
+                weaponRenderer.sortingOrder = characterRenderer.sortingOrder - 1;
+            }
+            else
+            {
+                weaponRenderer.sortingOrder = characterRenderer.sortingOrder + 1;
+            }
         }
+
     }
     public void Attack()
     {
@@ -94,7 +91,7 @@ public class WeaponController : MonoBehaviour
 
     private void ProjectileAttack()
     {
-        GameObject arrow = Instantiate(arrowPrefab, circleOrigin.position, Quaternion.identity);
+        GameObject arrow = Instantiate(weaponData.ProjectileWeapon, circleOrigin.position, Quaternion.identity);
         Vector2 shootDir = (PointerPosition - (Vector2)circleOrigin.position).normalized;
         arrow.GetComponent<Arrow>().Setup(currentSpeed, currentDamage);
         arrow.GetComponent<Arrow>().Initialize(shootDir);
@@ -117,25 +114,21 @@ public class WeaponController : MonoBehaviour
         }
     }
 
-    public void ChooseWeapon(int pressedButtonId)
+    public void ChooseWeapon(WeaponScriptableObject weaponChoose)
     {
-        weaponData = listWeaponData[pressedButtonId];
-        animator = weaponData.Prefab.GetComponent<Animator>();
+        //weaponData = listWeaponData[pressedButtonId];
+        weaponData = weaponChoose;
         currentCoolDown = weaponData.CooldownDuration;
         currentDamage = weaponData.Damage;
         currentSpeed = weaponData.Speed;
         weaponRenderer = weaponData.Prefab.GetComponent<SpriteRenderer>();
-        playerStats = GetComponentInParent<PlayerStats>();
-        characterRenderer = playerStats.playerData.Character.GetComponent<SpriteRenderer>();
-        if (pressedButtonId == 0)
-        {
-            transform.FindChild("Bone").gameObject.SetActive(true);
-        }
-        else
-        {
-            transform.FindChild("Machete").gameObject.SetActive(true);
-        }
-        panel.active = false;
-        Time.timeScale = 1;
+        //if (pressedButtonId == 0)
+        //{
+        //    transform.Find("Bone").gameObject.SetActive(true);
+        //}
+        //else
+        //{
+        //    transform.Find("Machete").gameObject.SetActive(true);
+        //}
     }
 }

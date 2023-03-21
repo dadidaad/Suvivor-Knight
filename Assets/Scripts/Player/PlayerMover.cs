@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMover : MonoBehaviour
 {
     private Rigidbody2D rb2d;
-    private Collider2D collider2D;
+    private Collider2D myCollider;
     [SerializeField]
     private float acceleration = 50, deacceleration = 100;
     [SerializeField]
@@ -17,7 +17,7 @@ public class PlayerMover : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         playerStats = GetComponent<PlayerStats>();  
-        collider2D = GetComponent<Collider2D>();
+        myCollider = GetComponent<Collider2D>();
     }
 
     private void FixedUpdate()
@@ -40,7 +40,7 @@ public class PlayerMover : MonoBehaviour
         {
             currentSpeed = 0;
             Destroy(rb2d);
-            Destroy(collider2D);
+            Destroy(myCollider);
         }
 
     }

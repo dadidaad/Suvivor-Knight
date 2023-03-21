@@ -8,12 +8,12 @@ public class Arrow : MonoBehaviour
     float speed;
     float damage;
 
-    private Rigidbody2D rigidbody2D;
+    private Rigidbody2D myRb2d;
 
     // Start is called before the first frame update
     void Awake()
     {
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        myRb2d = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -28,14 +28,14 @@ public class Arrow : MonoBehaviour
 
     private void DisableObject()
     {
-        rigidbody2D.velocity = Vector2.zero;
+        myRb2d  .velocity = Vector2.zero;
         gameObject.SetActive(false);
     }
 
     public void Initialize(Vector2 shootPosition)
     {
         Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
-        rigidbody2D.AddForce(shootPosition * speed, ForceMode2D.Impulse);
+        rigidbody2D.AddForce(new Vector2(shootPosition.x * speed, shootPosition.y * speed), ForceMode2D.Impulse);
         transform.eulerAngles = new Vector3(0, 0, UtilsClass.GetAngleFromVector(shootPosition));
         Destroy(gameObject, 5f);
     }
@@ -52,6 +52,8 @@ public class Arrow : MonoBehaviour
         {
             IDamageable damageable = collider.GetComponent<IDamageable>();
             damageable.TakeDamage(damage);
+            Destroy(gameObject);
+
         }
         if (collider.CompareTag("Boss"))
         {
@@ -60,6 +62,7 @@ public class Arrow : MonoBehaviour
             {
                 bossHealth.TakeDamage(damage);
                 Destroy(gameObject);
+
             }
 
         }
