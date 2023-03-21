@@ -15,5 +15,5 @@ MonoBehaviour:
   upgradeType: 2
   star: 0
   value: 0.2
-  Name: Move Speed
+  Name: Increase 20% Move Speed
   icon: {fileID: 21300000, guid: bf0395b79cbce3247a07c6b361da1e40, type: 3}

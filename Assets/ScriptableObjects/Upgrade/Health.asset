@@ -15,5 +15,5 @@ MonoBehaviour:
   upgradeType: 2
   star: 1
   value: 0.2
-  Name: Health
+  Name: Increase 20% max Health
   icon: {fileID: 21300000, guid: bb698a90e322a034cab2cf447db690dd, type: 3}

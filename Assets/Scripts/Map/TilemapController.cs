@@ -129,13 +129,25 @@ public class TilemapController : MonoBehaviour
         foreach(GameObject chunk in spawnedChunks)
         {
             opDist = Vector3.Distance(player.transform.position, chunk.transform.position);
+            List<GameObject> listChildToInActive = new List<GameObject>();
+            for(int i = 0; i < chunk.transform.childCount; i++)
+            {
+                if(chunk.transform.GetChild(i).CompareTag("Gem") || 
+                    chunk.transform.GetChild(i).CompareTag("Drops") ||
+                    chunk.transform.GetChild(i).CompareTag("DropsItem"))
+                {
+                    listChildToInActive.Add(chunk.transform.GetChild(i).gameObject);
+                }
+            } 
             if(opDist > maxOpDist)
             {
                 chunk.SetActive(false);
+                listChildToInActive.ForEach(x => x.SetActive(false));
             }
             else
             {
                 chunk.SetActive(true);
+                listChildToInActive.ForEach(x => x.SetActive(true));
             }
         }
     }

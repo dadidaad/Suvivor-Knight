@@ -7,6 +7,10 @@ TagManager:
   - SolidObject
   - Weapon
   - Enemy
+  - Drops
+  - Gem
+  - DropsItem
+  - Terrian
   layers:
   - Default
   - TransparentFX

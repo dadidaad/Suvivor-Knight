@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using static UnityEngine.GraphicsBuffer;
 
-public class PlayerStats : MonoBehaviour
+public class PlayerStats : MonoBehaviour, IDamageable
 {
     public PlayerScriptableObject playerData;
     public GameObject currentCharacter;
@@ -31,6 +31,7 @@ public class PlayerStats : MonoBehaviour
         currentMoveSpeed = playerData.MoveSpeed;
         currentCharacter = playerData.Character;
         animator = GetComponentInChildren<PlayerAnimator>();
+        statusBar.SetState(currentHealth, health);
     }
 
     // Update is called once per frame
@@ -50,6 +51,7 @@ public class PlayerStats : MonoBehaviour
         {
             timeInterval = 0;
             currentHealth += currentRecovery;
+            statusBar.SetState(currentHealth, health);
         }
         if (currentHealth > health)
         {
@@ -65,7 +67,7 @@ public class PlayerStats : MonoBehaviour
             Debug.Log("Player take " + damage);
             currentHealth -= damage;
 
-            statusBar.SetState(currentHealth, playerData.MaxHealth);
+            statusBar.SetState(currentHealth, health);
             invincibilityTimer = invincibilityDuration;
             isInvinciable = true; 
             if (currentHealth <= 0)
@@ -82,5 +84,16 @@ public class PlayerStats : MonoBehaviour
         //Destroy(gameObject, 2);
 
         StartCoroutine(TimeManager.PasueGame(1));
+    }
+
+    public void Heal(float amount)
+    {
+        currentHealth += health * amount;
+        if(currentHealth > health)
+        {
+            currentHealth = health;
+        }
+        statusBar.SetState(currentHealth, health);
+
     }
 }

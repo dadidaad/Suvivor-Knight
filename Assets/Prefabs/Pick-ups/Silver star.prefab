@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 5378737877689936}
   - component: {fileID: 6635983444815582596}
   - component: {fileID: 6971468385332927129}
+  - component: {fileID: 3809421822445283491}
   m_Layer: 0
   m_Name: Silver star
-  m_TagString: Untagged
+  m_TagString: Gem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,6 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c275be3863a63b240ab07a7975ccd9ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSuck: 0
   experienceGranted: 25
 --- !u!60 &6971468385332927129
 PolygonCollider2D:
@@ -136,3 +138,24 @@ PolygonCollider2D:
       - {x: 0.21476388, y: -0.041523933}
       - {x: 0.4375, y: 0.11141443}
       - {x: 0.17975163, y: 0.19832063}
+--- !u!50 &3809421822445283491
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7259828757483846793}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

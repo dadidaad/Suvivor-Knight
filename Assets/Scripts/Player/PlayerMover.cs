@@ -45,5 +45,9 @@ public class PlayerMover : MonoBehaviour
 
     }
 
+    public float GetCurrentMoveSpeed()
+    {
+        return currentSpeed;
+    }
 
 }
