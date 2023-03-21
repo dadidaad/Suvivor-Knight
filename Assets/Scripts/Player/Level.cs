@@ -13,7 +13,7 @@ public class Level : MonoBehaviour
     public int experience = 0;
     public int level = 1;
     public int experienceCap;
-
+    
     [System.Serializable]
     public class LevelRange
     {
@@ -38,8 +38,8 @@ public class Level : MonoBehaviour
     public void IncreaseExperience(int amount)
     {
         experience += amount;
-        exprienceBar.UpdateExprienceSlider(experience, experienceCap);
         LevelUpChecker();
+        exprienceBar.UpdateExprienceSlider(experience, experienceCap);
     }
 
     void LevelUpChecker()

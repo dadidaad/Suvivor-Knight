@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     private PlayerAnimator playerAnimator;
     private PlayerMover playerMover;
-
+    private PlayerStats playerStats;
     private WeaponController weaponController;
 
     [SerializeField]
@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     {
         pointerInput = GetPointerInput();
         movementInput = movement.action.ReadValue<Vector2>().normalized;
-        if(movementInput.x != 0)
+        if (movementInput.x != 0)
         {
             lastHorizontalVector = movementInput.x;
             lastMovedVector = new Vector2(lastHorizontalVector, 0f);
@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
         playerMover.MovementInput = movementInput;
         weaponController.PointerPosition = pointerInput;
         AnimateCharacter();
+        
     }
     public Vector2 GetMoveDir()
     {
@@ -82,6 +83,7 @@ public class PlayerController : MonoBehaviour
         playerAnimator = GetComponentInChildren<PlayerAnimator>();
         weaponController = GetComponentInChildren<WeaponController>();
         playerMover = GetComponent<PlayerMover>();
+        playerStats = GetComponent<PlayerStats>();    
         lastMovedVector = new Vector2(1.0f, 0f);
     }
 

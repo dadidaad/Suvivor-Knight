@@ -12,7 +12,8 @@ public class PlayerStats : MonoBehaviour
 
     PlayerAnimator animator;
     public float health;
-    bool isDead = false;
+    [HideInInspector]
+    public bool isDead = false;
     [SerializeField]
     StatusBar statusBar;
     // Start is called before the first frame update
@@ -73,6 +74,6 @@ public class PlayerStats : MonoBehaviour
         isDead = true;
         //Destroy(gameObject, 2);
 
-        StartCoroutine(TimeManager.PasueGame(2));
+        StartCoroutine(TimeManager.PasueGame(1));
     }
 }

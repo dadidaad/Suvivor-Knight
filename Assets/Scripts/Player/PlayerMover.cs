@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMover : MonoBehaviour
 {
     private Rigidbody2D rb2d;
-
+    private Collider2D collider2D;
     [SerializeField]
     private float acceleration = 50, deacceleration = 100;
     [SerializeField]
@@ -17,21 +17,31 @@ public class PlayerMover : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         playerStats = GetComponent<PlayerStats>();  
+        collider2D = GetComponent<Collider2D>();
     }
 
     private void FixedUpdate()
     {
-        if (MovementInput.magnitude > 0 && currentSpeed >= 0)
+        if (!playerStats.isDead)
         {
-            oldMovementInput = MovementInput;
-            currentSpeed += acceleration * playerStats.currentMoveSpeed * Time.deltaTime;
+            if (MovementInput.magnitude > 0 && currentSpeed >= 0)
+            {
+                oldMovementInput = MovementInput;
+                currentSpeed += acceleration * playerStats.currentMoveSpeed * Time.deltaTime;
+            }
+            else
+            {
+                currentSpeed -= deacceleration * playerStats.currentMoveSpeed * Time.deltaTime;
+            }
+            currentSpeed = Mathf.Clamp(currentSpeed, 0, playerStats.currentMoveSpeed);
+            rb2d.velocity = oldMovementInput * currentSpeed;
         }
         else
         {
-            currentSpeed -= deacceleration * playerStats.currentMoveSpeed * Time.deltaTime;
+            currentSpeed = 0;
+            Destroy(rb2d);
+            Destroy(collider2D);
         }
-        currentSpeed = Mathf.Clamp(currentSpeed, 0, playerStats.currentMoveSpeed);
-        rb2d.velocity = oldMovementInput * currentSpeed;
 
     }
 
