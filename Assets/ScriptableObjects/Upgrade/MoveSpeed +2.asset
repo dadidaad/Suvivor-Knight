@@ -10,8 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d2d2c8fef1b04644892ef052575d357, type: 3}
-  m_Name: Test 2
+  m_Name: MoveSpeed +2
   m_EditorClassIdentifier: 
-  upgradeType: 0
-  Name: Arrow dmg + 2
-  icon: {fileID: 21300000, guid: 0d0b17b4c106e0944b89e336e2198060, type: 3}
+  upgradeType: 2
+  star: 0
+  value: 2
+  Name: Move Speed +2
+  icon: {fileID: 21300000, guid: bf0395b79cbce3247a07c6b361da1e40, type: 3}

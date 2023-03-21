@@ -7,6 +7,8 @@ public class Level : MonoBehaviour
 {
     [SerializeField]
     ExprienceBar exprienceBar;
+    [SerializeField]
+    GameObject weapon;
     [Header("Experience/Level")]
     public int experience = 0;
     public int level = 1;
@@ -44,7 +46,7 @@ public class Level : MonoBehaviour
     {
         if (experience >= experienceCap)
         {
-            List<UpgradeData> list = GetUpgrades(2);
+            List<UpgradeData> list = GetUpgrades(3);
             selectedUpgrades= list;
             upgradePanel.OpenPanel(list);
             level++;
@@ -86,13 +88,13 @@ public class Level : MonoBehaviour
         switch (upgradeData.upgradeType)
         {
             case UpgradeType.WeaponUpgrade:
-                
+                WeaponUpgrade(upgradeData);
                 break;
             case UpgradeType.PlayerUpgrade:
                 PlayerUpgrade(upgradeData);
                 break;
             case UpgradeType.WeaponUnlock:
-                WeaponUpgrade(upgradeData);
+                
                 break;
         }
     }
@@ -106,6 +108,7 @@ public class Level : MonoBehaviour
                 break;
             case Star.Health:
                 GetComponent<PlayerStats>().currentHealth += upgradeData.value;
+                GetComponent<PlayerStats>().health += upgradeData.value;
                 break;
             case Star.Recover:
                 GetComponent<PlayerStats>().currentRecovery += upgradeData.value;
@@ -117,13 +120,14 @@ public class Level : MonoBehaviour
 
     private void WeaponUpgrade(UpgradeData upgradeData)
     {
+        GameObject weapon = GameObject.FindGameObjectWithTag("Weapon");
         switch (upgradeData.star)
         {
             case Star.Speed:
-                GetComponent<WeaponController>().currentSpeed += upgradeData.value;
+                weapon.GetComponent<WeaponController>().currentSpeed += upgradeData.value;
                 break;
-            case Star.Health:
-                GetComponent<WeaponController>().currentDamage += upgradeData.value;
+            case Star.Damage:
+                weapon.GetComponent<WeaponController>().currentDamage += upgradeData.value;
                 break;
             default:
                 return;

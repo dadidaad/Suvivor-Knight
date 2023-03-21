@@ -8,10 +8,10 @@ public class PlayerStats : MonoBehaviour
 {
     public PlayerScriptableObject playerData;
     public GameObject currentCharacter;
-    public float currentHealth;
-    public float currentRecovery;
-    public float currentMoveSpeed;
+    public float currentHealth, currentRecovery, currentMoveSpeed;
+
     PlayerAnimator animator;
+    public float health;
     bool isDead = false;
     [SerializeField]
     StatusBar statusBar;
@@ -24,7 +24,8 @@ public class PlayerStats : MonoBehaviour
 
     void Awake()
     {
-        currentHealth = playerData.MaxHealth;
+        health = playerData.MaxHealth;
+        currentHealth = health;
         currentRecovery = playerData.Recovery;
         currentMoveSpeed = playerData.MoveSpeed;
         currentCharacter = playerData.Character;
@@ -41,6 +42,11 @@ public class PlayerStats : MonoBehaviour
         else if (isInvinciable)
         {
             isInvinciable = false;
+        }
+
+        if (currentHealth > health)
+        {
+            currentHealth = health;
         }
     }
 
