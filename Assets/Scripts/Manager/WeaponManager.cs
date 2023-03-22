@@ -7,31 +7,22 @@ public class WeaponManager : MonoBehaviour
 
     [SerializeField]
     Transform weaponParent;
-
-    [HideInInspector]
-    public WeaponScriptableObject weaponScriptableObject;
     [SerializeField]
     GameObject chooseWeaponView;
-    bool isSetup = false;
+    [HideInInspector]
+    public bool isSetup = false;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        Time.timeScale = 0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isSetup)
-        {
-            Time.timeScale = 1f;
-            chooseWeaponView.SetActive(false);
-        }
     }
 
     public void SetupWeapon(WeaponScriptableObject weaponScriptableObject)
     {
-        this.weaponScriptableObject = weaponScriptableObject;
         GameObject weapon = Instantiate(weaponScriptableObject.Prefab);
         weapon.transform.SetParent(weaponParent, false);
         WeaponController weaponController = weaponParent.GetComponent<WeaponController>();

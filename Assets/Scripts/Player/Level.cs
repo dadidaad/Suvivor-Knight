@@ -30,18 +30,24 @@ public class Level : MonoBehaviour
         experienceCap = levelRanges[0].experienceCapIncrease;
         exprienceBar.UpdateExprienceSlider(experience, experienceCap);
         exprienceBar.SetLevelText(level);
-        weaponController = GetComponentInChildren<WeaponController>();
-        playerStats = GetComponent<PlayerStats>();
-        for (int i = 0; i<upgrades.Count; i++)
+    }
+
+    private void Update()
+    {
+        if(GameManager.Instance.state == 2)
         {
-            if (upgrades[i].upgradeType == UpgradeType.WeaponUpgrade
-                && upgrades[i].star == Star.Speed 
-                && weaponController.weaponData.Type != WeaponScriptableObject.TypeWeapon.Projectile)
+            weaponController = GetComponentInChildren<WeaponController>();
+            playerStats = GetComponent<PlayerStats>();
+            for (int i = 0; i < upgrades.Count; i++)
             {
-                upgrades.RemoveAt(i);
+                if (upgrades[i].upgradeType == UpgradeType.WeaponUpgrade
+                    && upgrades[i].star == Star.Speed
+                    && weaponController.weaponData.Type != WeaponScriptableObject.TypeWeapon.Projectile)
+                {
+                    upgrades.RemoveAt(i);
+                }
             }
         }
-
     }
 
     public void IncreaseExperience(int amount)

@@ -6,6 +6,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class PlayerStats : MonoBehaviour, IDamageable
 {
+    [HideInInspector]
     public PlayerScriptableObject playerData;
     public GameObject currentCharacter;
     public float currentHealth, currentRecovery, currentMoveSpeed;
@@ -23,39 +24,38 @@ public class PlayerStats : MonoBehaviour, IDamageable
     float invincibilityTimer;
     bool isInvinciable;
     float timeInterval = 0;
+    [HideInInspector]
+    public PlayerManager playerManager;
+    
     void Awake()
     {
-        health = playerData.MaxHealth;
-        currentHealth = health;
-        currentRecovery = playerData.Recovery;
-        currentMoveSpeed = playerData.MoveSpeed;
-        currentCharacter = playerData.Character;
-        animator = GetComponentInChildren<PlayerAnimator>();
-        statusBar.SetState(currentHealth, health);
+        playerManager = FindObjectOfType<PlayerManager>();
     }
-
     // Update is called once per frame
     void Update()
     {
-        timeInterval += Time.deltaTime;
-        if(invincibilityTimer > 0)
+        if (playerManager.isSetup)
         {
-            invincibilityTimer -= Time.deltaTime;
-        }
-        else if (isInvinciable)
-        {
-            isInvinciable = false;
-        }
+            timeInterval += Time.deltaTime;
+            if (invincibilityTimer > 0)
+            {
+                invincibilityTimer -= Time.deltaTime;
+            }
+            else if (isInvinciable)
+            {
+                isInvinciable = false;
+            }
 
-        if(timeInterval >= 1f)
-        {
-            timeInterval = 0;
-            currentHealth += currentRecovery;
-            statusBar.SetState(currentHealth, health);
-        }
-        if (currentHealth > health)
-        {
-            currentHealth = health;
+            if (timeInterval >= 1f)
+            {
+                timeInterval = 0;
+                currentHealth += currentRecovery;
+                statusBar.SetState(currentHealth, health);
+            }
+            if (currentHealth > health)
+            {
+                currentHealth = health;
+            }
         }
         
     }
@@ -95,5 +95,17 @@ public class PlayerStats : MonoBehaviour, IDamageable
         }
         statusBar.SetState(currentHealth, health);
 
+    }
+
+    public void ChooseCharacter(PlayerScriptableObject playerScriptableObject)
+    {
+        playerData = playerScriptableObject;
+        health = playerData.MaxHealth;
+        currentHealth = health;
+        currentRecovery = playerData.Recovery;
+        currentMoveSpeed = playerData.MoveSpeed;
+        currentCharacter = playerData.Character;
+        statusBar.SetState(currentHealth, health);
+        animator = GetComponentInChildren<PlayerAnimator>();
     }
 }

@@ -11,6 +11,9 @@ public class ButtonItem : MonoBehaviour
     public ButtonListControl buttonListControl;
     [HideInInspector]
     public ScriptableObject selectedObject;
+
+    [HideInInspector]
+    public GameObject chooseView;
     [SerializeField]
     GameObject child;
     // Start is called before the first frame update
@@ -22,5 +25,7 @@ public class ButtonItem : MonoBehaviour
     public void OnButtonClick()
     {
         buttonListControl.OnButtonClick(selectedObject);
+        chooseView.SetActive(false);
+        GameManager.Instance.state++;
     }
 }

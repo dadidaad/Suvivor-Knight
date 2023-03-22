@@ -4,23 +4,30 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
-    [Header("Weapon Stats")]
+    [HideInInspector]
     public WeaponScriptableObject weaponData;
     PlayerStats stats;
     public Vector2 PointerPosition { get; set; }
     [HideInInspector]
     public Animator animator;
     public float delay = 0.3f;
+    [HideInInspector]
     public GameObject arrowPrefab;
     private bool attackBlocked;
     public float currentCoolDown;
     public float currentDamage;
     public float currentSpeed;
     public float radius;
+    [HideInInspector]
     public Transform circleOrigin;
     public bool IsAttacking { get; private set; }
+    public WeaponManager weaponManager;
     SpriteRenderer weaponRenderer, characterRenderer;
     PlayerStats playerStats;
+    private void Awake()
+    {
+        weaponManager = FindObjectOfType<WeaponManager>();
+    }
     private void Start()
     {
         IsAttacking = false;
@@ -33,7 +40,7 @@ public class WeaponController : MonoBehaviour
     }
     private void Update()
     {
-        if (!playerStats.isDead)
+        if (weaponManager.isSetup && !playerStats.isDead)
         {
             currentCoolDown -= Time.deltaTime;
             if (currentCoolDown <= 0f)
@@ -72,8 +79,8 @@ public class WeaponController : MonoBehaviour
         if (attackBlocked)
             return;
         animator.SetTrigger("Attack");
-        
-        if(weaponData.Type == WeaponScriptableObject.TypeWeapon.Projectile)
+
+        if (weaponData.Type == WeaponScriptableObject.TypeWeapon.Projectile)
         {
             ProjectileAttack();
         }
@@ -82,7 +89,7 @@ public class WeaponController : MonoBehaviour
         StartCoroutine(DelayAttack());
         currentCoolDown = weaponData.CooldownDuration;
     }
-    private IEnumerator DelayAttack() 
+    private IEnumerator DelayAttack()
     {
         yield return new WaitForSeconds(delay);
         attackBlocked = false;
@@ -122,6 +129,10 @@ public class WeaponController : MonoBehaviour
         currentDamage = weaponData.Damage;
         currentSpeed = weaponData.Speed;
         weaponRenderer = weaponData.Prefab.GetComponent<SpriteRenderer>();
+        if(weaponData.ProjectileWeapon != null)
+        {
+            arrowPrefab = weaponData.ProjectileWeapon;
+        }
         //if (pressedButtonId == 0)
         //{
         //    transform.Find("Bone").gameObject.SetActive(true);

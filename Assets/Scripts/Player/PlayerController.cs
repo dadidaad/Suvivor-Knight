@@ -6,11 +6,13 @@ using static UnityEngine.GraphicsBuffer;
 
 public class PlayerController : MonoBehaviour
 {
-    private PlayerAnimator playerAnimator;
+    [HideInInspector]
+    public PlayerAnimator playerAnimator;
     private PlayerMover playerMover;
     private PlayerStats playerStats;
     private WeaponController weaponController;
 
+    PlayerManager playerManager;
     [SerializeField]
     private InputActionReference movement, attack, pointerPosition;
 
@@ -26,26 +28,29 @@ public class PlayerController : MonoBehaviour
     
     private void Update()
     {
-        pointerInput = GetPointerInput();
-        movementInput = movement.action.ReadValue<Vector2>().normalized;
-        if (movementInput.x != 0)
+        if (playerManager.isSetup)
         {
-            lastHorizontalVector = movementInput.x;
-            lastMovedVector = new Vector2(lastHorizontalVector, 0f);
-        }
-        if (movementInput.y != 0)
-        {
-            lastVerticalVector = movementInput.y;
-            lastMovedVector = new Vector2(0f, lastVerticalVector);  //Last moved Y
-        }
+            pointerInput = GetPointerInput();
+            movementInput = movement.action.ReadValue<Vector2>().normalized;
+            if (movementInput.x != 0)
+            {
+                lastHorizontalVector = movementInput.x;
+                lastMovedVector = new Vector2(lastHorizontalVector, 0f);
+            }
+            if (movementInput.y != 0)
+            {
+                lastVerticalVector = movementInput.y;
+                lastMovedVector = new Vector2(0f, lastVerticalVector);  //Last moved Y
+            }
 
-        if (movementInput.x != 0 && movementInput.y != 0)
-        {
-            lastMovedVector = new Vector2(lastHorizontalVector, lastVerticalVector);    //While moving
+            if (movementInput.x != 0 && movementInput.y != 0)
+            {
+                lastMovedVector = new Vector2(lastHorizontalVector, lastVerticalVector);    //While moving
+            }
+            playerMover.MovementInput = movementInput;
+            weaponController.PointerPosition = pointerInput;
+            AnimateCharacter();
         }
-        playerMover.MovementInput = movementInput;
-        weaponController.PointerPosition = pointerInput;
-        AnimateCharacter();
         
     }
     public Vector2 GetMoveDir()
@@ -80,7 +85,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        playerAnimator = GetComponentInChildren<PlayerAnimator>();
+        playerManager = FindObjectOfType<PlayerManager>();
         weaponController = GetComponentInChildren<WeaponController>();
         playerMover = GetComponent<PlayerMover>();
         playerStats = GetComponent<PlayerStats>();    

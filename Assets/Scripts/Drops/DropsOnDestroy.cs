@@ -22,7 +22,7 @@ public class DropsOnDestroy : MonoBehaviour
         if (isQuiting) { return; }
         if (Random.value < chance)
         {
-            Transform item = Instantiate(drops[(int)UtilsClass.RandomNumber(0f, 1f)]).transform;
+            Transform item = Instantiate(drops[(int)UtilsClass.RandomNumber(0f, 2f)]).transform;
             item.position = transform.position;
             GameObject terrianCurrent = FindObjectOfType<TilemapController>().currentChunk;
             item.SetParent(terrianCurrent.transform);

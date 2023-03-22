@@ -159,4 +159,4 @@ MonoBehaviour:
   drops:
   - {fileID: 958752622996120111, guid: c147ac012f54e4e40831ded5f93d4c71, type: 3}
   - {fileID: 6532136345145704536, guid: 09872b2f4aba3da409e4f6480aea9b5c, type: 3}
-  chance: 0.11
+  chance: 0.801

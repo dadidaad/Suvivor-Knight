@@ -10,24 +10,27 @@ public class PickUp : MonoBehaviour
     [SerializeField] DropsType dropsType;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(dropsType == DropsType.Heal)
+        if (collision.CompareTag("Player"))
         {
-            PlayerStats playerStats = collision.GetComponent<PlayerStats>();
-            if (playerStats != null)
+            if (dropsType == DropsType.Heal)
             {
-                playerStats.Heal(percentHeal);
+                PlayerStats playerStats = collision.GetComponent<PlayerStats>();
+                if (playerStats != null)
+                {
+                    playerStats.Heal(percentHeal);
+                }
             }
-        }
-        if(dropsType == DropsType.Magnet)
-        {
-            List<ExperienceGem> gems = FindObjectsOfType<ExperienceGem>(true).ToList();
-            //StartCoroutine(MoveGems());
-            foreach (ExperienceGem gem in gems)
+            if (dropsType == DropsType.Magnet)
             {
-                gem.isSuck = true;
+                List<ExperienceGem> gems = FindObjectsOfType<ExperienceGem>(true).ToList();
+                //StartCoroutine(MoveGems());
+                foreach (ExperienceGem gem in gems)
+                {
+                    gem.isSuck = true;
+                }
             }
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
 
     }
 

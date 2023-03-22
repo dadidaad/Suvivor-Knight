@@ -9,9 +9,9 @@ public class PlayerScriptableObject : ScriptableObject
     GameObject character;
     public GameObject Character { get => character; private set => character = value; }
 
-    [SerializeField]
-    GameObject startingWeapon;
-    public GameObject StartingWeapon { get => startingWeapon; private set => startingWeapon = value; }
+    //[SerializeField]
+    //GameObject startingWeapon;
+    //public GameObject StartingWeapon { get => startingWeapon; private set => startingWeapon = value; }
 
     [SerializeField]
     float maxHealth;
