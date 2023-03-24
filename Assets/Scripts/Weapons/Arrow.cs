@@ -7,7 +7,7 @@ public class Arrow : MonoBehaviour
 {
     float speed;
     float damage;
-
+    bool isCrit;
     private Rigidbody2D myRb2d;
 
     // Start is called before the first frame update
@@ -28,7 +28,7 @@ public class Arrow : MonoBehaviour
 
     private void DisableObject()
     {
-        myRb2d  .velocity = Vector2.zero;
+        myRb2d.velocity = Vector2.zero;
         gameObject.SetActive(false);
     }
 
@@ -40,30 +40,21 @@ public class Arrow : MonoBehaviour
         Destroy(gameObject, 5f);
     }
 
-    public void Setup(float speed, float damage)
+    public void Setup(float speed, float damage, bool isCrit)
     {
         this.speed = speed;
         this.damage = damage;
+        this.isCrit = isCrit;
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.CompareTag("Enemy") || collider.CompareTag("Drops"))
+        if (collider.CompareTag("Enemy") || collider.CompareTag("Drops") || collider.CompareTag("Boss"))
         {
             IDamageable damageable = collider.GetComponent<IDamageable>();
-            damageable.TakeDamage(damage);
+            SoundManager.PlayEffect("hit");
+            damageable.TakeDamage(damage, isCrit);
             Destroy(gameObject);
-        }
-        if (collider.CompareTag("Boss"))
-        {
-            BossHealth bossHealth = collider.GetComponent<BossHealth>();
-            if (bossHealth != null)
-            {
-                bossHealth.TakeDamage(damage);
-                Destroy(gameObject);
-
-            }
-
         }
         if (collider.CompareTag("SolidObject"))
         {

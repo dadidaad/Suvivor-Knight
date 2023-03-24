@@ -6,10 +6,14 @@ public class TimeManager : MonoBehaviour
 {
     
 
-    public static IEnumerator PasueGame(float timeInterval)
+    public static void PasueGame()
     {
-        yield return new WaitForSeconds(timeInterval);
         Time.timeScale = 0f;
+    }
+
+    public static void StartGame()
+    {
+        Time.timeScale = 1f;
     }
 
 }

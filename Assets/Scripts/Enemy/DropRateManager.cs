@@ -37,7 +37,10 @@ public class DropRateManager : MonoBehaviour
             Drops drops = possibleDrops[Mathf.FloorToInt(UtilsClass.RandomNumber(0f, possibleDrops.Count))];
             GameObject star = Instantiate(drops.itemPrefab, transform.position, Quaternion.identity);
             GameObject terrianCurrent = FindObjectOfType<TilemapController>().currentChunk;
-            star.transform.SetParent(terrianCurrent.transform);
+            if(terrianCurrent != null)
+            {
+                star.transform.SetParent(terrianCurrent.transform);
+            }
         }
     }
 }

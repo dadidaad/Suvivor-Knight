@@ -29,13 +29,13 @@ public class PauseUI : MonoBehaviour
     public void CloseMenu()
     {
         panel.SetActive(false);
-        Time.timeScale = 1.0f;
+        TimeManager.StartGame();
     }
     
     public void OpenMenu()
     {
         panel.SetActive(true);
-        Time.timeScale = 0;
+        TimeManager.PasueGame();
     }
 
     public void BackToMenu()

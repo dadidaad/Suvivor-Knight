@@ -60,7 +60,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
         
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, bool isCrit = false)
     {
         if (!isInvinciable)
         {
@@ -82,8 +82,9 @@ public class PlayerStats : MonoBehaviour, IDamageable
         animator.DeadState();
         isDead = true;
         //Destroy(gameObject, 2);
-
-        StartCoroutine(TimeManager.PasueGame(1));
+        Notification notification = GameManager.Instance.notificationPanel.GetComponent<Notification>();
+        StartCoroutine(notification.ShowMessage("GAME OVER!!", 1f));
+        TimeManager.PasueGame();
     }
 
     public void Heal(float amount)

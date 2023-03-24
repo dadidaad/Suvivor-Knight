@@ -4,46 +4,45 @@ using UnityEngine;
 
 public class BossAttack : MonoBehaviour
 {
-	public int attackDamage = 20;
-	public int enragedAttackDamage = 40;
+    public int attackDamage = 20;
+    public int enragedAttackDamage = 40;
+    public Vector3 attackOffset;
+    public float attackRange = 1;
+    [SerializeField]
+    public LayerMask attackMask;
+    public void Attack()
+    {
+        DetectColliders(CalcutePositionAttack(), attackDamage);
+    }
 
-	public Vector3 attackOffset;
-	public float attackRange = 3;
-	[SerializeField]
-	public LayerMask attackMask;
+    public void EnragedAttack()
+    {
+        DetectColliders(CalcutePositionAttack(), enragedAttackDamage);
+    }
 
-	public void Attack()
-	{
-		Vector3 pos = transform.position;
-		pos += transform.right * attackOffset.x;
-		pos += transform.up * attackOffset.y;
+    Vector3 CalcutePositionAttack()
+    {
+        Vector3 pos = transform.position;
+        pos += transform.right * attackOffset.x;
+        pos += transform.up * attackOffset.y;
+        return pos;
+    }
+    void OnDrawGizmosSelected()
+    {
+        Vector3 pos = transform.position;
+        pos += transform.right * attackOffset.x;
+        pos += transform.up * attackOffset.y;
 
-		Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, attackMask);
-		if (colInfo != null)
-		{
-			colInfo.GetComponent<PlayerStats>().TakeDamage(attackDamage);
-		}
-	}
-		
-	public void EnragedAttack()
-	{
-		Vector3 pos = transform.position;
-		pos += transform.right * attackOffset.x;
-		pos += transform.up * attackOffset.y;
+        Gizmos.DrawWireSphere(pos, attackRange);
+    }
 
-		Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, attackMask);
-		if (colInfo != null)
-		{
-			colInfo.GetComponent<PlayerStats>().TakeDamage(enragedAttackDamage);
-		}
-	}
+    public void DetectColliders(Vector3 position, float damage)
+    {
+        Collider2D collider = Physics2D.OverlapCircle(position, attackRange, attackMask);
+        if(collider != null){
+            IDamageable damageable = collider.GetComponent<IDamageable>();
+            damageable.TakeDamage(damage);
+        }
 
-	void OnDrawGizmosSelected()
-	{
-		Vector3 pos = transform.position;
-		pos += transform.right * attackOffset.x;
-		pos += transform.up * attackOffset.y;
-
-		Gizmos.DrawWireSphere(pos, attackRange);
-	}
+    }
 }

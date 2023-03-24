@@ -25,8 +25,8 @@ public class EnemyMover : MonoBehaviour
         EnemyStats enemyStats = GetComponent<EnemyStats>();
         if (!enemyStats.isDead)
         {
-            currentMoveSpeed += enemyData.MoveSpeed * Time.deltaTime;
-            currentMoveSpeed = Mathf.Clamp(currentMoveSpeed, 0, enemyData.MoveSpeed);
+            currentMoveSpeed += enemyStats.currentMoveSpeed * Time.deltaTime;
+            currentMoveSpeed = Mathf.Clamp(currentMoveSpeed, 0, enemyStats.currentMoveSpeed);
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position,
             currentMoveSpeed * Time.deltaTime
             );

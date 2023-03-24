@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 2310721824918201638}
   - component: {fileID: 8438770706820294711}
   - component: {fileID: -5319230197897267699}
-  - component: {fileID: -6403842531600609871}
   - component: {fileID: -3649832230826069411}
+  - component: {fileID: -6403842531600609871}
   - component: {fileID: 6638520130383973244}
   - component: {fileID: 8076270016996790639}
   m_Layer: 0
@@ -129,19 +129,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &-6403842531600609871
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8434601030379257041}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e5f90fa8be540a48b027c63ed1e835b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: b9b6bb7a55039274d82c7882021f64c2, type: 2}
 --- !u!114 &-3649832230826069411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,8 +142,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: b9b6bb7a55039274d82c7882021f64c2, type: 2}
+  currentMoveSpeed: 0
   isDead: 0
   timeToColor: 0.3
+--- !u!114 &-6403842531600609871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8434601030379257041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e5f90fa8be540a48b027c63ed1e835b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyData: {fileID: 11400000, guid: b9b6bb7a55039274d82c7882021f64c2, type: 2}
 --- !u!114 &6638520130383973244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,8 +170,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc477cbb807fa84458b19516e85d22a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  starPool: {fileID: 7796079287136571498, guid: ed0f3bcb93acf6745a49256cfb8c143b,
-    type: 3}
   drops:
   - name: Brozen Star
     itemPrefab: {fileID: 310128845103006029, guid: 87d46c56a81e5d04dba72ee08b6b4e63,

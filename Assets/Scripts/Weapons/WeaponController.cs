@@ -10,13 +10,15 @@ public class WeaponController : MonoBehaviour
     public Vector2 PointerPosition { get; set; }
     [HideInInspector]
     public Animator animator;
-    public float delay = 0.3f;
+    public float delay = 0.1f;
     [HideInInspector]
     public GameObject arrowPrefab;
     private bool attackBlocked;
     public float currentCoolDown;
     public float currentDamage;
     public float currentSpeed;
+    public float currentCritChance;
+    public bool isCrit = false;
     public float radius;
     [HideInInspector]
     public Transform circleOrigin;
@@ -37,6 +39,7 @@ public class WeaponController : MonoBehaviour
     public void ResetIsAttacking()
     {
         IsAttacking = false;
+        
     }
     private void Update()
     {
@@ -45,6 +48,7 @@ public class WeaponController : MonoBehaviour
             currentCoolDown -= Time.deltaTime;
             if (currentCoolDown <= 0f)
             {
+                checkCritChance();
                 Attack();
             }
             if (IsAttacking)
@@ -79,7 +83,7 @@ public class WeaponController : MonoBehaviour
         if (attackBlocked)
             return;
         animator.SetTrigger("Attack");
-
+        SoundManager.PlayEffect("attack");
         if (weaponData.Type == WeaponScriptableObject.TypeWeapon.Projectile)
         {
             ProjectileAttack();
@@ -88,6 +92,11 @@ public class WeaponController : MonoBehaviour
         attackBlocked = true;
         StartCoroutine(DelayAttack());
         currentCoolDown = weaponData.CooldownDuration;
+        if (isCrit)
+        {
+            currentDamage /= 2;
+            isCrit = false;
+        }
     }
     private IEnumerator DelayAttack()
     {
@@ -100,23 +109,18 @@ public class WeaponController : MonoBehaviour
     {
         GameObject arrow = Instantiate(weaponData.ProjectileWeapon, circleOrigin.position, Quaternion.identity);
         Vector2 shootDir = (PointerPosition - (Vector2)circleOrigin.position).normalized;
-        arrow.GetComponent<Arrow>().Setup(currentSpeed, currentDamage);
+        arrow.GetComponent<Arrow>().Setup(currentSpeed, currentDamage, isCrit);
         arrow.GetComponent<Arrow>().Initialize(shootDir);
     }
     public void DetectColliders()
     {
         foreach (Collider2D collider in Physics2D.OverlapCircleAll(circleOrigin.position, radius))
         {
-            if (collider.CompareTag("Enemy") || collider.CompareTag("Drops"))
+            if (collider.CompareTag("Enemy") || collider.CompareTag("Drops") || collider.CompareTag("Boss"))
             {
                 IDamageable damageable = collider.GetComponent<IDamageable>();
-                damageable.TakeDamage(currentDamage);
-            }
-
-            if (collider.CompareTag("Boss"))
-            {
-                BossHealth bossHealth = collider.GetComponent<BossHealth>();
-                bossHealth.TakeDamage(currentDamage);
+                SoundManager.PlayEffect("hit");
+                damageable.TakeDamage(currentDamage, isCrit);
             }
         }
     }
@@ -128,6 +132,7 @@ public class WeaponController : MonoBehaviour
         currentCoolDown = weaponData.CooldownDuration;
         currentDamage = weaponData.Damage;
         currentSpeed = weaponData.Speed;
+        currentCritChance = weaponData.CritChance;
         weaponRenderer = weaponData.Prefab.GetComponent<SpriteRenderer>();
         if(weaponData.ProjectileWeapon != null)
         {
@@ -141,5 +146,15 @@ public class WeaponController : MonoBehaviour
         //{
         //    transform.Find("Machete").gameObject.SetActive(true);
         //}
+    }
+
+    void checkCritChance()
+    {
+        float currentChance = Random.value;
+        if(currentCritChance < currentChance)
+        {
+            currentDamage *= 2;
+            isCrit = true;
+        }
     }
 }

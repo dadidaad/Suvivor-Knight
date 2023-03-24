@@ -16,7 +16,7 @@ MonoBehaviour:
   damage: 10
   speed: 10
   cooldownDuration: 1
-  pierce: 0
+  critChance: 0.1
   type: 1
   projectileWeapon: {fileID: 5500144235481921078, guid: 4b7f26ad74dffe94fb77167886e021ab,
     type: 3}

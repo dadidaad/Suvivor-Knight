@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 181b70d7527abb9408e4d34425698d19, type: 3}
+  m_Name: StageScriptableObject
+  m_EditorClassIdentifier: 
+  stageEvents:
+  - time: 1
+    wave:
+    - enemyCount: 60
+      enemyPrefab: {fileID: 8434601030379257041, guid: 9fc9bb07ff5d2244ea3d61ed57135509,
+        type: 3}
+    - enemyCount: 20
+      enemyPrefab: {fileID: 8137182223778076141, guid: f9315ce7e4c2dc64586233a0e0d20d50,
+        type: 3}
+  - time: 20
+    wave:
+    - enemyCount: 80
+      enemyPrefab: {fileID: 8434601030379257041, guid: 9fc9bb07ff5d2244ea3d61ed57135509,
+        type: 3}
+    - enemyCount: 30
+      enemyPrefab: {fileID: 8137182223778076141, guid: f9315ce7e4c2dc64586233a0e0d20d50,
+        type: 3}
+    - enemyCount: 100
+      enemyPrefab: {fileID: 3320583726142666942, guid: 67f73c2d93f827540a76efe1aeb365e5,
+        type: 3}
+  - time: 60
+    wave:
+    - enemyCount: 150
+      enemyPrefab: {fileID: 3320583726142666942, guid: 67f73c2d93f827540a76efe1aeb365e5,
+        type: 3}
+  - time: 90
+    wave:
+    - enemyCount: 100
+      enemyPrefab: {fileID: 3320583726142666942, guid: 67f73c2d93f827540a76efe1aeb365e5,
+        type: 3}
+    - enemyCount: 100
+      enemyPrefab: {fileID: 8434601030379257041, guid: 9fc9bb07ff5d2244ea3d61ed57135509,
+        type: 3}
+    - enemyCount: 50
+      enemyPrefab: {fileID: 8137182223778076141, guid: f9315ce7e4c2dc64586233a0e0d20d50,
+        type: 3}
+  - time: 120
+    wave:
+    - enemyCount: 100
+      enemyPrefab: {fileID: 3320583726142666942, guid: 67f73c2d93f827540a76efe1aeb365e5,
+        type: 3}
+    - enemyCount: 100
+      enemyPrefab: {fileID: 8434601030379257041, guid: 9fc9bb07ff5d2244ea3d61ed57135509,
+        type: 3}
+    - enemyCount: 50
+      enemyPrefab: {fileID: 8137182223778076141, guid: f9315ce7e4c2dc64586233a0e0d20d50,
+        type: 3}

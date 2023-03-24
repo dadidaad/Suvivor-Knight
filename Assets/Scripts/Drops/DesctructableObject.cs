@@ -9,7 +9,7 @@ public class DesctructableObject : MonoBehaviour, IDamageable
     {
         animator = GetComponent<Animator>();
     }
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, bool isCrit = false)
     {
         animator.SetTrigger("Break");
         Destroy(gameObject);

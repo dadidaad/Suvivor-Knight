@@ -6,11 +6,10 @@ public class UpgradePanelManager : MonoBehaviour
 {
     [SerializeField] GameObject panel;
     [SerializeField] List<UpgradeButton> upgradeButtons;
-    [SerializeField] GameObject notificationPanel;
 
     public void OpenPanel(List<UpgradeData> upgradeDatas)
     {
-        Notification notification = notificationPanel.GetComponent<Notification>();
+        Notification notification = GameManager.Instance.notificationPanel.GetComponent<Notification>();
         StartCoroutine(notification.ShowMessage("LEVEL UP!!", 1f));
         StartCoroutine(ActivePanel(upgradeDatas));
     }

@@ -23,8 +23,8 @@ public class WeaponScriptableObject : ScriptableObject
     public float CooldownDuration { get => cooldownDuration; private set => cooldownDuration = value; }
 
     [SerializeField]
-    int pierce;
-    public int Pierce { get => pierce; private set => pierce = value; }
+    float critChance;
+    public float CritChance { get => critChance; private set => critChance = value; }
 
     [SerializeField]
     TypeWeapon type;

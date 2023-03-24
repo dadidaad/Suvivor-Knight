@@ -89,9 +89,14 @@ public class Level : MonoBehaviour
             count = upgrades.Count;
         }
 
-        for (int i = 0; i < count; i++)
+        while(listUpgrade.Count < count)
         {
-            listUpgrade.Add(upgrades[Random.Range(0, upgrades.Count)]);
+            int randomIndex = Random.Range(0, upgrades.Count);
+            if (listUpgrade.Contains(upgrades[randomIndex]))
+            {
+                continue;
+            }
+            listUpgrade.Add(upgrades[randomIndex]);
         }
         return listUpgrade;
     }
@@ -146,7 +151,7 @@ public class Level : MonoBehaviour
                 weaponController.currentSpeed += (upgradeData.value * weaponController.currentSpeed);
                 break;
             case Star.Damage:
-                weaponController.currentDamage += (upgradeData.value * weaponController.currentDamage);
+                weaponController.currentDamage += Mathf.Floor((upgradeData.value * weaponController.currentDamage));
                 break;
             case Star.Cooldown:
                 weaponController.currentCoolDown += (upgradeData.value * weaponController.currentCoolDown);

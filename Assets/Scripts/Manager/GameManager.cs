@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour
     List<GameObject> listSelectorView;
     [HideInInspector]
     public int state = 0;
-
+    public GameObject notificationPanel;
+    bool isSetupFinish;
     public static GameManager Instance{ get; private set; }
     private void Awake()
     {
@@ -22,13 +23,16 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
-        Time.timeScale = 0f;
+        TimeManager.PasueGame();
         LoadViewSelector();
     }
 
     private void Update()
     {
-        LoadViewSelector();
+        if (!isSetupFinish)
+        {
+            LoadViewSelector();
+        }
     }
     public static void DoFloatingText(Vector3 position, string text, Color c)
     {
@@ -47,7 +51,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Time.timeScale = 1f;
+            TimeManager.StartGame();
+            isSetupFinish = true;
         }
     }
 }

@@ -29,7 +29,6 @@ public class TilemapController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         ChunkChecker();
         ChunkOptimizer();
     }

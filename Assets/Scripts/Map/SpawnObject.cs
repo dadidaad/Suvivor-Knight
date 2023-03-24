@@ -40,7 +40,10 @@ public class SpawnObject : MonoBehaviour
         {
             GameObject chestPrefab = Instantiate(toSpawn, player.position + spawnPoints[(int)UtilsClass.RandomNumber(0f, 2f)].transform.position, Quaternion.identity);
             GameObject terrianCurrent = FindObjectOfType<TilemapController>().currentChunk;
-            chestPrefab.transform.SetParent(terrianCurrent.transform);
+            if(terrianCurrent != null)
+            {
+                chestPrefab.transform.SetParent(terrianCurrent.transform);
+            }
 
         }
     }
